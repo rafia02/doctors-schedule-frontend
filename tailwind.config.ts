@@ -9,8 +9,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        // #415da1
+        // #415DA1
+        primary: "#415da1",
+        secondery: "#e9f0ff",
+        textDark: "#121229",
+        textLight: "#39394A",
+      },
+      fontFamily: {
+        // roboto: ['"Roboto"', 'sans-serif'],
+        jakarta: ['"Plus Jakarta Sans"', 'sans-serif'],
       },
     },
   },
