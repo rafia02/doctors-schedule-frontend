@@ -94,6 +94,7 @@ const Navber = () => {
           ></div>
         )}
 
+
         {/* Drawer content */}
         <div className="relative w-64 h-full bg-secondery text-textLight text-lg shadow-lg">
           {/* Close button */}
