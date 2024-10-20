@@ -51,6 +51,7 @@ const PatientSignUpPage = () => {
           </div>
         </div>
 
+
         {/* Right Column - Form Section */}
         <div className="w-full md:w-1/2 p-8 md:p-12 bg-white">
           <h2 className="text-3xl font-bold text-gray-800 text-center mb-2">Create Your <span className="text-primary">Patient</span> Account</h2>
