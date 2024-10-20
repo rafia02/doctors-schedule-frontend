@@ -25,6 +25,7 @@ const DoctorSignUpPage = () => {
     console.log(data);
     // Handle form submission logic here (e.g., API calls)
   };
+  
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
     <div className="flex w-full max-w-6xl shadow-lg rounded-lg overflow-hidden bg-white">
