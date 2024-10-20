@@ -1,9 +1,11 @@
 "use client"
 
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { useState } from "react";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/16/solid";
 import Link from "next/link";
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 
 // Define form inputs
 interface SignUpFormInputs {
@@ -19,7 +21,7 @@ interface SignUpFormInputs {
 
 
 const PatientSignUpPage = () => {
-  const { register, handleSubmit, formState: { errors }, watch } = useForm<SignUpFormInputs>();
+  const { register, handleSubmit, formState: { errors }, watch, control } = useForm<SignUpFormInputs>();
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
@@ -29,30 +31,33 @@ const PatientSignUpPage = () => {
     // Handle form submission logic here (e.g., API calls)
   };
   return (
-    <div className=" bg-gray-100 flex items-center justify-center">
-      <div className="flex w-full  shadow-lg rounded-lg overflow-hidden bg-white">
+    <div className=" flex py-10  items-center justify-center bg-gray-100">
+      <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 bg-[#dee8fe] rounded-lg shadow-lg overflow-hidden">
 
         {/* Left Column - Image Section */}
-        <div className="hidden md:flex w-1/2 bg-cover bg-center" style={{ backgroundImage: `url('https://img.freepik.com/free-photo/portrait-friendly-doctor-isolated-gray_1328-5420.jpg?w=900&t=st=1729417019~exp=1729417619~hmac=28e43ef1b12c3e34c09cbdb4524ef85f2a464454be26bd7aaff7cd209218a01e')` }}>
-          <div className="flex flex-col justify-center px-10 bg-secondery bg-opacity-50 text-textDark h-full">
-            <div className="backdrop-blur-xl p-8  bg-secondery/30">
-              <h2 className="text-4xl font-bold mb-4">Join Our Healthcare Community</h2>
-              <p className="text-lg mb-6">Sign up to manage appointments, access medical records, and consult with doctors—anytime, anywhere.</p>
-              <ul className="space-y-4 text-lg">
-                <li>✔ Secure Access to Health Data</li>
-                <li>✔ 24/7 Online Appointment Booking</li>
-                <li>✔ Trusted by Thousands of Patients</li>
-                <li>✔Diagnostics at your doorstep</li>
-                <li>✔ Instant Electronic Prescription</li>
-                <li>✔ Medicine Reminder</li>
-                <li>✔ Easy Payment Options</li>
-              </ul>
-            </div>
+        <div className="hidden md:block    bg-secondery p-8">
+
+
+          <div className="backdrop-blur-xl p-8  bg-secondery/30 ">
+            <h2 className="text-4xl font-bold mb-4">Join Our Healthcare Community</h2>
+            <p className="text-lg mb-6">Sign up to manage appointments, access medical records, and consult with doctors—anytime, anywhere.</p>
+            <ul className="space-y-4 text-lg">
+              <li>✔ Secure Access to Health Data</li>
+              <li>✔ 24/7 Online Appointment Booking</li>
+              <li>✔ Trusted by Thousands of Patients</li>
+              <li>✔Diagnostics at your doorstep</li>
+              <li>✔ Instant Electronic Prescription</li>
+              <li>✔ Medicine Reminder</li>
+              <li>✔ Easy Payment Options</li>
+            </ul>
           </div>
         </div>
 
+
+
+
         {/* Right Column - Form Section */}
-        <div className="w-full md:w-1/2 p-8 md:p-12 bg-white">
+        <div className="p-8 md:p-12 space-y-4  bg-white">
           <h2 className="text-3xl font-bold text-gray-800 text-center mb-2">Create Your <span className="text-primary">Patient</span> Account</h2>
           <p className="text-gray-500 text-center mb-6">Start managing your healthcare with confidence.</p>
 
@@ -167,7 +172,34 @@ const PatientSignUpPage = () => {
 
 
             {/* Phone Number */}
+
+
             <div>
+              <label htmlFor="phoneNumber" className="block text-gray-700 font-semibold">Phone Number (Optional)</label>
+              <Controller
+                control={control}
+                name="phoneNumber"
+                render={({ field: { onChange, value } }) => (
+                  <PhoneInput
+                    country={'bd'}
+                    value={value}
+                    onChange={onChange}
+                    inputStyle={{
+                      width: "100%",
+                      padding: "12px",
+                      border: "1px solid #D1D5DB",
+                      borderRadius: "0.375rem",
+                      outline: "none",
+                      fontSize: "16px",
+                      color: "#4A5568"
+                    }}
+                  />
+                )}
+              />
+            </div>
+
+
+            {/* <div>
               <label htmlFor="phoneNumber" className="block mb-[1px] text-textDark font-semibold">Phone Number (Optional)</label>
               <input
                 id="phoneNumber"
@@ -176,7 +208,7 @@ const PatientSignUpPage = () => {
                 className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-btnClr focus:border-btnClr"
                 placeholder="Enter your phone number"
               />
-            </div>
+            </div> */}
 
             {/* Submit Button */}
             <button
