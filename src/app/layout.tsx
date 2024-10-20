@@ -2,6 +2,11 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navber from "@/components/shared/Navber";
+import Footer from "@/components/shared/footer/Footer";
+import Providerr from "@/components/provider/Provider";
+import ShowNavber from "@/components/clientComponents/showNavber";
+
+
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -24,11 +29,20 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+
+
   return (
     <html lang="en">
       <body>
-        <Navber></Navber>
-        {children}
+        <Providerr>
+          <div className="mb-16">
+            <ShowNavber></ShowNavber>
+          </div>
+          {children}
+          {/* <Footer></Footer> */}
+        </Providerr>
+
       </body>
     </html>
   );

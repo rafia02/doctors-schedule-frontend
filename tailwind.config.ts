@@ -15,6 +15,8 @@ const config: Config = {
         secondery: "#e9f0ff",
         textDark: "#121229",
         textLight: "#39394A",
+        btnClr: "#5477ce",
+        btnHover: "#496bc2",
       },
       fontFamily: {
         // roboto: ['"Roboto"', 'sans-serif'],
