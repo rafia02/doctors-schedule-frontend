@@ -56,26 +56,8 @@ const PatientSignUpPage = () => {
 
 
 
-        {/* <div className="hidden md:flex w-1/2 bg-cover bg-center" style={{ backgroundImage: `url('https://img.freepik.com/free-photo/portrait-friendly-doctor-isolated-gray_1328-5420.jpg?w=900&t=st=1729417019~exp=1729417619~hmac=28e43ef1b12c3e34c09cbdb4524ef85f2a464454be26bd7aaff7cd209218a01e')` }}>
-          <div className="flex flex-col justify-center px-10 bg-secondery bg-opacity-50 text-textDark h-full">
-            <div className="backdrop-blur-xl p-8  bg-secondery/30">
-              <h2 className="text-4xl font-bold mb-4">Join Our Healthcare Community</h2>
-              <p className="text-lg mb-6">Sign up to manage appointments, access medical records, and consult with doctors—anytime, anywhere.</p>
-              <ul className="space-y-4 text-lg">
-                <li>✔ Secure Access to Health Data</li>
-                <li>✔ 24/7 Online Appointment Booking</li>
-                <li>✔ Trusted by Thousands of Patients</li>
-                <li>✔Diagnostics at your doorstep</li>
-                <li>✔ Instant Electronic Prescription</li>
-                <li>✔ Medicine Reminder</li>
-                <li>✔ Easy Payment Options</li>
-              </ul>
-            </div>
-          </div>
-        </div> */}
-
         {/* Right Column - Form Section */}
-        <div className="p-8 md:p-12 space-y-6  bg-white">
+        <div className="p-8 md:p-12 space-y-4  bg-white">
           <h2 className="text-3xl font-bold text-gray-800 text-center mb-2">Create Your <span className="text-primary">Patient</span> Account</h2>
           <p className="text-gray-500 text-center mb-6">Start managing your healthcare with confidence.</p>
 
