@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid"
+import Link from "next/link";
 
 
 interface LoginFormInputs {
@@ -28,7 +29,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex py-10  items-center justify-center bg-gray-100">
+    <div className="flex py-10  items-center justify-center bg-gray-50">
       <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 bg-[#dee8fe] rounded-lg shadow-lg overflow-hidden">
 
 
@@ -148,9 +149,9 @@ export default function LoginPage() {
           <div className="text-center text-sm text-textDark">
             <p>
               New Here?{" "}
-              <a href="#" className="font-medium text-primary hover:text-btnHover duration-75">
+              <Link href="/patient-signup" className="font-medium text-primary hover:text-btnHover duration-75">
                 Create an account
-              </a>
+              </Link>
             </p>
           </div>
 
