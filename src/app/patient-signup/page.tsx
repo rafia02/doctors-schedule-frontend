@@ -5,7 +5,6 @@ import { useState } from "react";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/16/solid";
 import Link from "next/link";
 import PhoneInput from 'react-phone-input-2'
-import 'react-phone-input-2/lib/style.css'
 
 // Define form inputs
 interface SignUpFormInputs {
@@ -61,10 +60,10 @@ const PatientSignUpPage = () => {
           <h2 className="text-3xl font-bold text-gray-800 text-center mb-2">Create Your <span className="text-primary">Patient</span> Account</h2>
           <p className="text-gray-500 text-center mb-6">Start managing your healthcare with confidence.</p>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 text-sm">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 text-[13px]">
 
             {/* Full Name */}
-            <div className="flex justify-center gap-5">
+            <div className="flex justify-center gap-2">
               <div className="w-1/2">
                 <label htmlFor="firstName" className="block mb-[1px] text-textDark font-semibold">First Name</label>
                 <input
@@ -120,7 +119,7 @@ const PatientSignUpPage = () => {
             </div>
 
             {/* Password */}
-            <div className="flex justify-center gap-5">
+            <div className="flex justify-center gap-2">
               <div className="w-1/2">
                 <label htmlFor="password" className="block mb-[1px] text-textDark font-semibold"> Password</label>
                 <div className="relative">

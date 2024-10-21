@@ -12,8 +12,8 @@ const Navber = () => {
   return (
     <div className="">
       {/* Navbar */}
-      <nav className="  bg-secondery  font-jakarta fixed w-full top-0 z-50">
-        <div className=" px-5 md:px-8 py-5 ">
+      <nav className="  bg-white font-jakarta fixed w-full top-0 z-50">
+        <div className=" px-5 md:px-8 py-6 ">
           <div className="flex justify-between">
             {/* Logo */}
             <div className="flex-shrink-0 flex items-center">
@@ -58,11 +58,14 @@ const Navber = () => {
               <Link href="/dashboard" className=" hover:text-primary">
                 Dashboard
               </Link>
-              <Link href="/login" className=" hover:text-primary">
+              <Link href="/doctor-signup" className=" hover:text-primary">
+                For Doctor
+              </Link>
+              <Link href="/login" className=" bg-primary text-white hover:bg-btnHover px-5 py-1 rounded">
                 Login
               </Link>
 
-              <div className="relative">
+              {/* <div className="relative">
                 <button
                   onClick={() => setIsProductsOpen(!isProductsOpen)}
                   className=" hover:text-primary"
@@ -85,11 +88,11 @@ const Navber = () => {
                     </a>
                   </div>
                 )}
-              </div>
+              </div> */}
 
-              <Link href="/appointment" className=" hover:text-primary">
+              {/* <Link href="/appointment" className=" hover:text-primary">
                 Appointment
-              </Link>
+              </Link> */}
             </div>
 
             {/* Mobile Hamburger Menu */}
