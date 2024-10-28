@@ -12,13 +12,13 @@ const Navber = () => {
   return (
     <div className="">
       {/* Navbar */}
-      <nav className="  bg-white font-jakarta fixed w-full top-0 z-50">
+      <nav className="  bg-white shadow-sm font-jakarta fixed w-full top-0 z-50">
         <div className=" px-5 md:px-8 py-6 ">
           <div className="flex justify-between">
             {/* Logo */}
             <div className="flex-shrink-0 flex items-center">
               <Link href="/" className="text-2xl font-bold">
-                MyLogo
+              
               </Link>
             </div>
 
