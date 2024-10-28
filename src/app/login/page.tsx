@@ -6,7 +6,7 @@ import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid"
 import Link from "next/link";
 
 
-interface LoginFormInputs {
+interface LoginFormType {
   email: string;
   password: string;
 }
@@ -16,14 +16,14 @@ export default function LoginPage() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginFormInputs>();
+  } = useForm<LoginFormType>();
 
   const [showPassword, setShowPassword] = useState(false)
 
-  const togglePasswordVisibility = () => setShowPassword(!showPassword);
+  const togglePassword = () => setShowPassword(!showPassword);
 
 
-  const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
+  const onSubmit: SubmitHandler<LoginFormType> = (data) => {
     console.log(data);
 
   };
@@ -35,7 +35,7 @@ export default function LoginPage() {
 
 
 
-        <div className="hidden md:block rounded-bl-full   bg-secondery p-8">
+        <div className="hidden md:block rounded-bl-full bg-secondery p-8">
           {/* Background Image */}
 
           <div className=" flex flex-col items-start justify-center h-full text-textDark space-y-6 p-8  bg-opacity-50 rounded-lg">
@@ -114,7 +114,7 @@ export default function LoginPage() {
                   />
                   <div
                     className="absolute top-1/4 right-0 pr-3 flex items-center  cursor-pointer"
-                    onClick={togglePasswordVisibility}
+                    onClick={togglePassword}
                   >
                     {showPassword ? (
                       <EyeSlashIcon className="h-5 w-5 text-textDark" />

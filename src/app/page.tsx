@@ -1,8 +1,13 @@
+import Hero from "@/components/home/hero"
+import SearchBar from "@/components/home/searchbar"
 
 
 const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <div>
+      <Hero></Hero>
+      <SearchBar></SearchBar>
+    </div>
   )
 }
 
