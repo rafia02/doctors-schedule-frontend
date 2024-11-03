@@ -4,6 +4,8 @@ import { useState } from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid"
 import Link from "next/link";
+import { userSingIn } from "@/service/authService";
+
 
 
 interface LoginFormType {
@@ -12,19 +14,23 @@ interface LoginFormType {
 }
 
 export default function LoginPage() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginFormType>();
-
+  const { register,handleSubmit,formState: { errors } } = useForm<LoginFormType>();
   const [showPassword, setShowPassword] = useState(false)
-
   const togglePassword = () => setShowPassword(!showPassword);
+  
+
+
+  
+
+
 
 
   const onSubmit: SubmitHandler<LoginFormType> = (data) => {
-    console.log(data);
+    console.log("user login", data);
+    const email = data.email
+    const password = data.password
+
+    userSingIn(email, password)
 
   };
 

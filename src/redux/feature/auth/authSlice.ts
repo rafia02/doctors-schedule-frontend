@@ -26,10 +26,13 @@ const authSlice = createSlice({
           logout(state) {
             state.user = null;
           },
+          clearUser: (state) => {
+            state.user = null;
+          },
     }
 })
 
 
 
-export const {loginStart, loginSuccess } = authSlice.actions
+export const {loginStart, loginSuccess, loginFailure, logout, clearUser } = authSlice.actions
 export default authSlice.reducer
