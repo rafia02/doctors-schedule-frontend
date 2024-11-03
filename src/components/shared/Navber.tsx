@@ -1,12 +1,29 @@
 "use client"
-
+import { RootState } from "@/redux/store";
+import { logout, monitorAuthState } from "@/service/authService";
+import { AuthState } from "@/Types/authTypes";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/16/solid";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+
+
 
 const Navber = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isProductsOpen, setIsProductsOpen] = useState(false);
+  const { user } = useSelector((state:RootState) => state.auth) as AuthState
+  console.log('user:',user)
+   useEffect(()=> {
+    monitorAuthState()
+   },[])
+
+
+
+   const handleLogout = () => {
+        console.log('logout')
+        logout()
+   }
 
 
   return (
@@ -61,9 +78,20 @@ const Navber = () => {
               <Link href="/doctor-signup" className=" hover:text-primary">
                 For Doctor
               </Link>
-              <Link href="/login" className=" bg-primary text-white hover:bg-btnHover px-5 py-1 rounded">
+              {/* <Link href="/login" className=" bg-primary text-white hover:bg-btnHover px-5 py-1 rounded">
+                Login
+              </Link> */}
+              
+              {
+                user?.email? <Link href="/" onClick={handleLogout} className=" bg-primary text-white hover:bg-btnHover px-5 py-1 rounded">
+                Logout
+              </Link> : <Link href="/login" className=" bg-primary text-white hover:bg-btnHover px-5 py-1 rounded">
                 Login
               </Link>
+              }
+
+
+
 
               {/* <div className="relative">
                 <button
