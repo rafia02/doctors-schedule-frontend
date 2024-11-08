@@ -8,7 +8,7 @@ const Hero = () => {
 
     // bg-[#E6EFFE]
     <div
-      className=" mb-20"
+      className=""
 
     //  style={{
     //   backgroundImage: `url("https://img.freepik.com/free-vector/national-doctor-s-day-hand-drawn-background_23-2149438164.jpg?ga=GA1.1.490881575.1726385807&semt=ais_hybrid")`,
@@ -17,11 +17,11 @@ const Hero = () => {
     //   height: "100%"
     // }}
     >
-      <div className=" flex flex-col md:flex-row gap-10 ">
+      <div className=" flex flex-col md:flex-row gap-0 md:gap-10 ">
         {/* Left Column (Text) */}
-        <div className="md:w-3/5 px-5 md:px-8 py-5 text-center  mt-9 md:text-left">
-          <p className="text-[22px] mb-5 text-textLight ">Bringing You the Best in Healthcare</p>
-          <h1 className="text-6xl font-semibold text-textDark font-jakarta">Quality <span className='text-primary'>Healthcare</span> Solution for all</h1>
+        <div className="md:w-3/5 px-5 md:px-8 py-5 text-center  md:mt-9 md:text-left">
+          <p className="text-xl mb-4 uppercase text-textLight tracking-wider">Bringing You the Best in Healthcare</p>
+          <h1 className="text-5xl md:text-6xl font-semibold text-textDark font-jakarta">Quality <span className='text-primary'>Healthcare</span> Solution for all</h1>
 
           <p className="text-xl mt-6 text-textLight ">
             <span className='font-semibold'>Doctors Schedule</span> is your trusted platform to connect with healthcare professionals, view their schedules, and book appointments with ease.
@@ -35,7 +35,7 @@ const Hero = () => {
         </div>
 
         {/* Right Column (Image) */}
-        <div className="w-2/5 mt-5">
+        <div className="md:w-2/5 mt-5">
           <Image
             src={img}
             alt="Doctor"

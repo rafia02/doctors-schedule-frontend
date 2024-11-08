@@ -5,6 +5,10 @@ import { useState } from "react";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/16/solid";
 import Link from "next/link";
 import PhoneInput from 'react-phone-input-2'
+import { userSingUp } from "@/service/authService";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+
 
 // Define form inputs
 interface SignUpFormInputs {
@@ -22,13 +26,29 @@ interface SignUpFormInputs {
 const PatientSignUpPage = () => {
   const { register, handleSubmit, formState: { errors }, watch, control } = useForm<SignUpFormInputs>();
   const [showPassword, setShowPassword] = useState(false);
-
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
+  const { user, error } = useSelector((state:RootState)=> state.auth)
+
+
+  console.log('success:', user)
+  console.log('error:', error)
+
+
+
 
   const onSubmit: SubmitHandler<SignUpFormInputs> = (data) => {
-    console.log(data);
+    console.log('petient', data);
+
     // Handle form submission logic here (e.g., API calls)
+    // const name = data.firstName + ' ' + data.lastName
+    const email = data.email
+    const password = data.password
+    userSingUp(email, password)
   };
+
+
+
+
   return (
     <div className=" flex py-10  items-center justify-center bg-gray-100">
       <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 bg-[#dee8fe] rounded-lg shadow-lg overflow-hidden">
