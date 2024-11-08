@@ -12,6 +12,7 @@ const config: Config = {
         // #415da1
         // #415DA1
         // #E6EFFE
+        // #39394a
         primary: "#415da1",
         secondery: "#e9f0ff",
         textDark: "#121229",
