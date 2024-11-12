@@ -27,7 +27,7 @@ const Navber = () => {
 
 
   return (
-    <div className="">
+    <div className="mb-16">
       {/* Navbar */}
       <nav className="  bg-white shadow-sm font-jakarta fixed w-full top-0 z-50">
         <div className=" px-5 md:px-8 py-6 ">

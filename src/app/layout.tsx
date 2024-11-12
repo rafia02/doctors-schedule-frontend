@@ -34,9 +34,9 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body>
+      <body className="font-jakarta">
         <Providerr>
-          <div className="mb-16">
+          <div >
             <ShowNavber></ShowNavber>
           </div>
           {children}

@@ -14,8 +14,8 @@ const OnlineServiceSection = () => {
             <div className="absolute inset-0 bg-btnHover opacity-20 rounded-lg"></div>
           </div>
           <div className="hidden md:block">
-            <div className="flex flex-col items-center gap-1 bg-primary text-sm tracking-widest absolute bottom-5 -right-14 text-white  font-bold py-4 px-6 ">
-              <Image height={40} width={50} src={icon1} alt=""></Image>
+            <div className="flex flex-col items-center gap-1 backdrop-blur-sm bg-primary/80 border-l-4 border-l-secondery text-white text-sm tracking-widest absolute bottom-5 -right-14   font-bold py-3 px-6 ">
+              <Image height={40} width={40} src={icon1} alt=""></Image>
               <div className="text-center">
                 Trusted by 1,000+ <br /> Patients
               </div>
