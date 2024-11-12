@@ -1,5 +1,5 @@
 "use client"
-import { EnvelopeIcon, PhoneIcon, UserIcon } from "@heroicons/react/16/solid";
+import { EnvelopeIcon, PhoneIcon, StarIcon, UserIcon } from "@heroicons/react/16/solid";
 import { useState } from "react";
 
 
@@ -7,8 +7,8 @@ const page = () => {
 
   const data = [
     { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin', specialty: 'Cardiology', phone: '123-456-7890', rating: 4.8, father: 'abc', mather: 'zyx', brother: 'abdul jamal', sister: 'mitu kabir' },
-    { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'Editor', specialty: 'Cardiology', phone: '123-456-7890', rating: 4.8, father: 'abc', mather: 'zyx', brother: 'abdul jamal', sister: 'mitu kabir'  },
-    { id: 3, name: 'Alice Johnson', email: 'alice@example.com', role: 'Viewer', specialty: 'Cardiology', phone: '123-456-7890', rating: 4.8, father: 'abc', mather: 'zyx', brother: 'abdul jamal', sister: 'mitu kabir'  },
+    { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'Editor', specialty: 'Cardiology', phone: '123-456-7890', rating: 4.8, father: 'abc', mather: 'zyx', brother: 'abdul jamal', sister: 'mitu kabir' },
+    { id: 3, name: 'Alice Johnson', email: 'alice@example.com', role: 'Viewer', specialty: 'Cardiology', phone: '123-456-7890', rating: 4.8, father: 'abc', mather: 'zyx', brother: 'abdul jamal', sister: 'mitu kabir' },
     // Add more rows as needed
   ];
 
@@ -23,40 +23,64 @@ const page = () => {
 
   return (
 
-    <div className="">
+
+
+
+    <div>
+      <h4 className=" text-center uppercase font-semibold mb-5 tracking-wider">All <span className="text-primary">doctor</span> information</h4>
       <div className="flex shadow-sm rounded-tl-lg flex-col overflow-x-auto">
         <div className="">
-          <div className="inline-block ">
+          <div className="inline-block w-full">
             <div className="overflow-x-auto rounded-lg">
               <table className="text-left w-full rounded-lg">
-                <thead className="bg-primary text-white rounded-lg text-sm uppercase font-semibold tracking-wide">
+                <thead className="bg-primary text-white rounded-lg text-xs uppercase ">
                   <tr>
-                    <th scope="col" className="px-7 py-4 ">Serial</th>
-                    <th scope="col" className="px-7 py-4">Name</th>
-                    <th scope="col" className="px-7 py-4">Email</th>
-                    <th scope="col" className="px-7 py-4">Phone</th>
-                    <th scope="col" className="px-7 py-4">Specialty</th>
-                    <th scope="col" className="px-7 py-4 rounded-tr-lg">Rating</th>
+                    <th scope="col" className="px-7 py-4">N.o</th>
+                    <th scope="col" className="px-8 py-4">Name</th>
+                    <th scope="col" className="px-8 py-4">Specialty</th>
+                    <th scope="col" className="px-8 py-4">Email</th>
+                    <th scope="col" className="px-8 py-4">Phone</th>
+                    <th scope="col" className="px-8 py-4 rounded-tr-lg">Rating</th>
                   </tr>
                 </thead>
                 <tbody>
                   {data.map((item, index) => (
-                    <tr key={item.id} className="dark:border-neutral-500">
-                      <td className="whitespace-nowrap px-7 py-4 font-medium">{index + 1}</td>
-                      <td className="whitespace-nowrap px-7 py-4 font-medium flex items-center">
-                        <UserIcon className="w-5 h-5 text-primary" />
-                        <span className="ml-2 font-medium">{item.name}</span>
+                    <tr key={item.id} className="border-b text-sm hover:bg-gray-100 duration-200">
+                      <td className="whitespace-nowrap px-7 py-6">{index + 1}</td>
+
+                      <td className="whitespace-nowrap px-8 py-6">
+                        <div className="flex items-center gap-1">
+                          <UserIcon className="w-4 h-4 text-primary" />
+                          <p>{item.name}</p>
+                        </div>
                       </td>
 
-                      <td className="whitespace-nowrap px-7 py-4 font-medium flex items-center">
-                        <UserIcon className="w-5 h-5 text-primary" />
-                        <span className="ml-2 font-medium">{item.name}</span>
+                      <td className="whitespace-nowrap px-8 py-6">{item.specialty}</td>
+
+                      <td className="whitespace-nowrap px-8 py-6">
+                        <div className="flex items-center gap-2">
+                          <EnvelopeIcon className="w-4 h-4 text-primary" />
+                          <p>{item.email}</p>
+                        </div>
                       </td>
-                      
-                      <td className="whitespace-nowrap px-7 py-4 font-medium">{item.email}</td>
-                      <td className="whitespace-nowrap px-7 py-4 font-medium">{item.phone}</td>
-                      <td className="whitespace-nowrap px-7 py-4 font-medium">{item.specialty}</td>
-                      <td className="whitespace-nowrap px-7 py-4 font-medium">{item.rating}</td>
+
+
+                      <td className="whitespace-nowrap px-8 py-6">
+                        <div className="flex items-center gap-1">
+                          <PhoneIcon className="w-4 h-4 text-primary" />
+                          <p>{item.phone}</p>
+                        </div>
+                      </td>
+
+
+                      <td className="whitespace-nowrap px-8 py-6">
+                        <div className="flex items-center gap-1">
+                          <StarIcon className="w-4 h-4 text-primary" />
+                          <p>{item.rating}</p>
+                        </div>
+                      </td>
+
+
                     </tr>
                   ))}
                 </tbody>
@@ -67,46 +91,6 @@ const page = () => {
       </div>
     </div>
 
-
-  //   <div className=" m-5">
-  //     <div className="flex flex-col overflow-x-auto">
-  //   <div className="sm:-mx-6 lg:-mx-8">
-  //     <div className="inline-block py-2 px-5 ">
-  //       <div className="overflow-x-auto ">
-  //         <table className=" text-left w-full">
-  //           <thead className=" bg-primary text-white rounded-lg  text-sm uppercase font-semibold tracking-wide w-overflow-x-auto ">
-  //             <tr>
-  //               <th scope="col" className="px-7 py-4">Serial</th>
-  //               <th scope="col" className="px-7 py-4">Name</th>
-  //               <th scope="col" className="px-7 py-4">Email</th>
-  //               <th scope="col" className="px-7 py-4">Phone</th>
-  //               <th scope="col" className="px-7 py-4">specialty</th>
-  //               <th scope="col" className="px-7 py-4">Heading</th>
-  //               <th scope="col" className="px-7 py-4">Heading</th>
-  //               <th scope="col" className="px-7 py-4">Heading</th>
-  //               <th scope="col" className="px-7 py-4">Heading</th>
-
-      
-  //             </tr>
-  //           </thead>
-  //           <tbody>
-  //             <tr className=" dark:border-neutral-500">
-  //               <td className="whitespace-nowrap px-7 py-4 font-medium">1</td>    
-  //               <td className="whitespace-nowrap px-7 py-4 font-medium flex items-center">
-  //           <UserIcon className="w-5 h-5 text-primary" />
-  //          <span className="font-medium">Dr. John Doe</span>
-  //          </td>      
-  //               <td className="whitespace-nowrap px-7 py-4 font-medium">Altab mahmud jaman</td>          
-  //               <td className="whitespace-nowrap px-7 py-4 font-medium">altab"gmail.com</td>          
-  //             </tr>
-              
-  //           </tbody>
-  //         </table>
-  //       </div>
-  //     </div>
-  //   </div>
-  // </div>
-  //   </div>
 
 
 
@@ -127,23 +111,23 @@ const page = () => {
 
     //         <tr className="border-b hover:bg-gray-50 duration-200">
     //           <td className="py-4 px-6 flex items-center space-x-3">
-    //             <UserIcon className="w-5 h-5 text-primary" />
+    //             <UserIcon className="w-4 h-4 text-primary" />
     //             <span className="font-medium">Dr. John Doe</span>
     //           </td>
     //           <td className="py-4 px-6 flex items-center space-x-3">
-    //             <UserIcon className="w-5 h-5 text-primary" />
+    //             <UserIcon className="w-4 h-4 text-primary" />
     //             <span className="font-medium">Dr. John Doe</span>
     //           </td>
     //           <td className="py-4 px-6 flex items-center space-x-3">
-    //             <UserIcon className="w-5 h-5 text-primary" />
+    //             <UserIcon className="w-4 h-4 text-primary" />
     //             <span className="font-medium">Dr. John Doe</span>
     //           </td>
     //           <td className="py-4 px-6 flex items-center space-x-3">
-    //             <UserIcon className="w-5 h-5 text-primary" />
+    //             <UserIcon className="w-4 h-4 text-primary" />
     //             <span className="font-medium">Dr. John Doe</span>
     //           </td>
     //           <td className="py-4 px-6 flex items-center space-x-3">
-    //             <UserIcon className="w-5 h-5 text-primary" />
+    //             <UserIcon className="w-4 h-4 text-primary" />
     //             <span className="font-medium">Dr. John Doe</span>
     //           </td>
     //         </tr>
@@ -156,7 +140,7 @@ const page = () => {
     //             className="border-b hover:bg-gray-50 transition-colors duration-200"
     //           >
     //             <td className="py-4 px-6 flex items-center space-x-3">
-    //               <UserIcon className="w-5 h-5 text-primary" />
+    //               <UserIcon className="w-4 h-4 text-primary" />
     //               <span className="font-medium">{doctor.name}</span>
     //             </td>
     //             <td className="py-4 px-6">{doctor.specialty}</td>
@@ -180,7 +164,7 @@ const page = () => {
 
 
 
-   
+
   )
 }
 

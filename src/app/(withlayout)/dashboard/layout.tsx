@@ -36,14 +36,14 @@ const layout = ({ children }: { children: React.ReactNode }) => {
 
 
 
-      <div className="md:w-9/12 w-full px-4 md:px-6 py-5 md:py-8 ">
+      <div className="flex-1 w-full px-4 md:px-6 py-5 md:py-8 ">
         <header className="flex ml-12 md:ml-0 justify-between items-center mb-8">
-          <h1 className="text-3xl font-semibold">Dashboard</h1>
+          <h1 className="text-3xl text-primary font-semibold">Dashboard</h1>
           <button className="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark">
             Logout
           </button>
         </header>
-        <section className="bg-white px-6 overflow-hidden shadow-md rounded py-6">
+        <section className="bg-white px-6 overflow-hidden shadow-md rounded py-7">
           {children}
         </section>
       </div>
