@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import authReducerSlice from '../redux/feature/auth/authSlice'
+import { doctorsApi } from './api/doctorsApi'
 
 // use redux parsist 
 // import { persistStore, persistReducer } from 'redux-persist'
@@ -29,9 +30,14 @@ import authReducerSlice from '../redux/feature/auth/authSlice'
 export const store = configureStore({
   reducer: {
     auth: authReducerSlice,
-
+    [doctorsApi.reducerPath] : doctorsApi.reducer
   },
+
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(doctorsApi.middleware),
 })
+
+
 
 // export const persistor = persistStore(store);
 
