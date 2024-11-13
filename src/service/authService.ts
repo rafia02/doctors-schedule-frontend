@@ -13,16 +13,18 @@ export const userSingUp = async (email:string, password:string) => {
 
     try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        console.log('userCredential', userCredential)
         const user = userCredential.user;
         const userData = {
             uid: user.uid,
             email: user.email,
         };
         store.dispatch(loginSuccess(userData));
+        return user
     } catch (error) {
         const errorMessage = (error as FirebaseError).message;
         store.dispatch(loginFailure(errorMessage));
-    }
+    }    
 }
 
 
