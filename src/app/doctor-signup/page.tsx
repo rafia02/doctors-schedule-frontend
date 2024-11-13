@@ -3,6 +3,8 @@ import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { useState } from "react";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/16/solid";
 import PhoneInput from "react-phone-input-2";
+import { userSingUp } from "@/service/authService";
+
 
 // Define form inputs
 interface DoctorSignUpFormInputs {
@@ -27,9 +29,22 @@ const DoctorSignUpPage = () => {
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
-  const onSubmit: SubmitHandler<DoctorSignUpFormInputs> = (data) => {
-    console.log(data);
+
+
+
+
+  const onSubmit: SubmitHandler<DoctorSignUpFormInputs> = async (data) => {
+    
     // Handle form submission logic here (e.g., API calls)
+    const email = data.email
+    const password = data.password
+    console.log({email, password})
+
+
+    const doctor = await userSingUp(email, password)
+    console.log('doctor', doctor)
+
+    
   }
 
 
@@ -146,16 +161,12 @@ const DoctorSignUpPage = () => {
 
               {/* Gender  */}
               <div className="w-1/2">
-                <label htmlFor="email" className="block mb-[1px] text-textLight font-semibold">Gender</label>
+                <label htmlFor="gender" className="block mb-[1px] text-textLight font-semibold">Gender</label>
                 <input
-                  id="email"
+                  id="gender"
                   type="text"
                   {...register("gender", {
                     required: "gender is required",
-                    pattern: {
-                      value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-                      message: "Invalid email address",
-                    },
                   })}
                   className={`w-full px-4 py-2 border ${errors.gender ? "border-red-500" : "border-gray-300"
                     } rounded-md focus:outline-none focus:ring-btnClr focus:border-btnClr`}
