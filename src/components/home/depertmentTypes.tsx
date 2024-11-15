@@ -3,7 +3,7 @@ import React from 'react'
 
 const DepartmentTypes = () => {
   return (
-    <div className='mt-28 font-jakarta px-5 md:px-8'>
+    <div className='mt-28 px-5 md:px-8'>
       <div className='flex flex-col md:flex-row text-textDark gap-5 justify-between md:items-center'>
         <div>
           <h2 className='text-lg mb-2 text-textLight tracking-widest'>Our Services</h2>

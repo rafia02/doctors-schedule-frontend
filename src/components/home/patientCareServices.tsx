@@ -5,7 +5,7 @@ import Link from "next/link"
 
 const PatientCareServices = () => {
     return (
-        <div className="mt-28 font-jakarta px-5 md:px-8">
+        <div className="mt-28  px-5 md:px-8">
             <div className='text-center'>
                 <div>
                     <h2 className='text-2xl md:text-4xl font-semibold'>Patient <span className="text-primary">Care</span> Services</h2>

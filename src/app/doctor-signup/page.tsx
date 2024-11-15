@@ -92,7 +92,7 @@ const DoctorSignUpPage = () => {
                 {...register('doctorTitle', { required: 'Title is required' })}
                 className=" block w-full py-2 px-4 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-gray-400"
               >
-                <option value="" disabled selected hidden >Select a title</option>
+                <option value="" disabled hidden >Select a title</option>
                 {titles.map((title, index) => (
                   <option key={index} value={title}>
                     {title}
