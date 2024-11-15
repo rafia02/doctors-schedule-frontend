@@ -4,7 +4,7 @@ import icon2 from "../../app/image/home/icons/correct.png"
 
 const OnlineServiceSection = () => {
   return (
-    <section className="px-5 md:px-8 py-36 font-jakarta">
+    <section className="px-5 md:px-8 py-36 ">
       <div className=" grid md:grid-cols-2 items-center gap-10 md:gap-24">
 
         {/* Column 1 - Image with Overlay & Badge */}

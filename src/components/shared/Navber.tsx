@@ -29,7 +29,7 @@ const Navber = () => {
   return (
     <div className="mb-16">
       {/* Navbar */}
-      <nav className="  bg-white shadow-sm font-jakarta fixed w-full top-0 z-50">
+      <nav className="  bg-white shadow-sm  fixed w-full top-0 z-50">
         <div className=" px-5 md:px-8 py-6 ">
           <div className="flex justify-between">
             {/* Logo */}
@@ -72,7 +72,7 @@ const Navber = () => {
                 About
               </Link>
 
-              <Link href="/dashboard" className=" hover:text-primary">
+              <Link href="/dashboard/admin/overview" className=" hover:text-primary">
                 Dashboard
               </Link>
               <Link href="/doctor-signup" className=" hover:text-primary">

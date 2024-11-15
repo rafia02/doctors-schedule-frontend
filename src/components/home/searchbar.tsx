@@ -30,7 +30,7 @@ const SearchBar = () => {
 
 
   return (
-    <div className="font-jakarta px-5 md:px-8 py-16"
+    <div className=" px-5 md:px-8 py-16"
       style={{
         backgroundImage: `url("https://cdn.prod.website-files.com/65525600ad11f5d8bc8c342b/65525600ad11f5d8bc8c3434_Background%20Pattern.svg")`,
         backgroundRepeat: "no-repeat",
