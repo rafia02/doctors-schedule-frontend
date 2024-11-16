@@ -67,7 +67,7 @@ const DepartmentDetailsPage = () => {
 
             <section className=" px-5 md:px-24">
 
-                <div className="mt-5 grid grid-cols-1 md:grid-cols-2  gap-8">
+                <div className="mt-10 grid grid-cols-1 md:grid-cols-2  gap-8">
                     <div className="flex items-center">
                         <Image className="w-full h-auto" src="https://img.freepik.com/premium-photo/male-medicine-doctor-holding-red-heart-putting-stethoscope-head-close-it-closeup-medical-help-cardiology-care-health-prophylaxis-prevention-insurance-surgery-resuscitation-concept_151013-14369.jpg?w=900" height={500} width={500} alt=""></Image>
                     </div>
@@ -76,7 +76,7 @@ const DepartmentDetailsPage = () => {
                         Whether it's diabetes, high blood pressure, or heart health, our highly skilled providers and friendly care team have the expertise to guide you towards optimal well-being. Join us at the Charles B. Wang Community Health Center to start your journey to better care today at one of our internal medicine locations in Flushing, Queens or Lower Manhattan.
                     </p>
                 </div>
-                <div className="mt-24">
+                <div className="mt-14">
                     <h2 className="text-3xl leading-relaxed md:text-4xl font-semibold mb-8">
                         Cardiology Treatment Process
                     </h2>

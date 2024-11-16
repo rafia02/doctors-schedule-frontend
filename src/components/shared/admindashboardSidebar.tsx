@@ -1,14 +1,17 @@
 "use client"
-import { CalendarIcon, ChartBarIcon, CogIcon, DocumentTextIcon, HomeIcon, InboxIcon, UserGroupIcon } from "@heroicons/react/16/solid"
+import { AcademicCapIcon, CalendarIcon, ChartBarIcon, ChevronDownIcon, ChevronUpIcon, CogIcon, DocumentTextIcon, HomeIcon, InboxIcon, UserGroupIcon } from "@heroicons/react/16/solid"
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import Link from "next/link"
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 const AdminDashboardSidebar = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
+    const [isDepartmentOpen, setIsDepartmentOpen] = useState(false)
   const router = usePathname();
   const isActive = (path: string) => router === path;
 
   const linkClasses = "flex items-center p-2 rounded transition duration-150";
+  const subMenuClasses = "ml-8 px-3 py-2 rounded text-sm";
 
   return (
 
@@ -91,6 +94,67 @@ const AdminDashboardSidebar = ({ isSidebarOpen }: { isSidebarOpen: boolean }) =>
         <DocumentTextIcon className="w-6 h-6 mr-3" />
         Documents
       </Link>
+
+
+      {/* <Link
+        href="/dashboard/admin/addDepartment"
+        className={`${linkClasses} ${
+          isActive("/dashboard/documents") ? "bg-[#4967b3]" : "hover:bg-[#4967b3]"
+        }`}
+      >
+        <AcademicCapIcon className="w-6 h-6 mr-3" />
+        Department
+      </Link> */}
+
+
+      {/* Department with Sub-menu */}
+      <div>
+          <button
+            onClick={() => setIsDepartmentOpen(!isDepartmentOpen)}
+            className={`${linkClasses} w-full ${
+              isDepartmentOpen ? "bg-[#4967b3] " : "hover:bg-[#4967b3] "
+            }`}
+          >
+            <AcademicCapIcon className="w-6 h-6 mr-3" />
+            Specialized
+            {isDepartmentOpen ? (
+              <ChevronUpIcon className="w-5 h-5 ml-auto" />
+            ) : (
+              <ChevronDownIcon className="w-5 h-5 ml-auto" />
+            )}
+          </button>
+          {isDepartmentOpen && (
+            <div className="flex flex-col gap-2 mt-2">
+              <Link
+                href="/dashboard/admin/addSpecialized"
+                className={`${subMenuClasses} ${
+                  isActive("/dashboard/admin/addSpecialized")
+                    ? "bg-[#4967b3]"
+                    : "hover:bg-[#4967b3]"
+                }`}
+              >
+                Add Specialized
+              </Link>
+              <Link
+                href="/dashboard/admin/showSpecialized"
+                className={`${subMenuClasses} ${
+                  isActive("/dashboard/admin/showSpecialized")
+                    ? "bg-[#4967b3]"
+                    : "hover:bg-[#4967b3]"
+                }`}
+              >
+                All Specialized
+              </Link>
+            </div>
+          )}
+        </div>
+
+
+
+    
+
+
+
 
       <Link
         href="/dashboard/settings"
