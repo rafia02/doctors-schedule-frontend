@@ -13,11 +13,23 @@ export const doctorsApi = createApi({
                     body: data
                 }
             }
-        })
+        }),
+        doctorRegister : builder.mutation({
+            query: (doctorData)=> {
+                console.log({doctorData})   
+                return {
+                    url: '/api/v1/userCreate/doctor',
+                    method: 'POST',
+                    body: doctorData
+                }
+            }
+        }),
+
+
     }) 
 })
 
 
 
 
-export const { usePatientRegisterMutation } = doctorsApi
+export const { usePatientRegisterMutation, useDoctorRegisterMutation } = doctorsApi
