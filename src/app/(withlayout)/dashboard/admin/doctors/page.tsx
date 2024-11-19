@@ -26,7 +26,7 @@ const page = () => {
 
 
 
-    <div>
+    <div className="bg-white p-8">
       <h4 className=" text-center uppercase font-semibold mb-5 tracking-wider">All <span className="text-primary">doctor</span> information</h4>
       <div className="flex shadow-sm rounded-tl-lg flex-col overflow-x-auto">
         <div className="">

@@ -6,7 +6,7 @@ import img2 from "../../app/image/home/Background (3).png"
 
 const Caring = () => {
   return (
-    <div className="pt-20 px-5 md:px-8 pb-20 md:pb-48 text-textDark bg-secondery">
+    <div className="py-16 px-5 md:px-8 text-textDark ">
       <div className="flex flex-col-reverse md:flex-row gap-5 md:gap-20">
 
         <div className="md:w-1/2">

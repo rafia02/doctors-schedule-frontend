@@ -5,12 +5,16 @@ import Image from "next/image"
 const DepartmentDetailsPage = () => {
 
     const services = [
-        "Heart Disease Consultation",
-        "ECG & Stress Testing",
-        "Cardiac Catheterization",
-        "Interventional Cardiology",
-        "Heart Surgery"
-    ]
+        'General examination and personalized treatment plans',
+        'Teeth cleaning and x-rays',
+        'Dental fillings and crowns',
+        'Tooth extraction',
+        'Root canals',
+        'Basic periodontal treatment',
+        'Denture and bridge care',
+        'Referrals to specialty care',
+        'Health education to promote dental health',
+    ];
 
 
 
@@ -45,7 +49,7 @@ const DepartmentDetailsPage = () => {
             </div>
 
             {/* description */}
-            <div className="flex mt-10 px-5 md:px-0">
+            <div className="flex mt-10 px-5 md:mr-10 md:px-0">
                 <div className="md:w-1/12 hidden md:block mt-[215px] catagory ">
                     {/* <h6 className="text-4xl tracking-widest font-semibold uppercase -rotate-90">Cardiology</h6> */}
                     <h6 className="text-4xl tracking-widest font-semibold uppercase -rotate-90">Cardiology</h6>
@@ -67,6 +71,8 @@ const DepartmentDetailsPage = () => {
 
             <section className=" px-5 md:px-24">
 
+
+
                 <div className="mt-10 grid grid-cols-1 md:grid-cols-2  gap-8">
                     <div className="flex items-center">
                         <Image className="w-full h-auto" src="https://img.freepik.com/premium-photo/male-medicine-doctor-holding-red-heart-putting-stethoscope-head-close-it-closeup-medical-help-cardiology-care-health-prophylaxis-prevention-insurance-surgery-resuscitation-concept_151013-14369.jpg?w=900" height={500} width={500} alt=""></Image>
@@ -76,8 +82,28 @@ const DepartmentDetailsPage = () => {
                         Whether it's diabetes, high blood pressure, or heart health, our highly skilled providers and friendly care team have the expertise to guide you towards optimal well-being. Join us at the Charles B. Wang Community Health Center to start your journey to better care today at one of our internal medicine locations in Flushing, Queens or Lower Manhattan.
                     </p>
                 </div>
+
+
+
+
                 <div className="mt-14">
-                    <h2 className="text-3xl leading-relaxed md:text-4xl font-semibold mb-8">
+                    <h2 className="text-3xl md:text-4xl font-semibold mb-5">Dental Care Services We Offer</h2>
+                    <ul className="space-y-4">
+                        {services.map((service, index) => (
+                            <li
+                                key={index}
+                                className="text-lg text-gray-700 leading-relaxed"
+                            >
+                                &bull; {service}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+
+
+                <div className="mt-14">
+                    <h2 className="text-3xl leading-relaxed md:text-4xl font-semibold mb-5">
                         Cardiology Treatment Process
                     </h2>
                     <p className="text-lg leading-relaxed mb-12">
@@ -89,31 +115,31 @@ const DepartmentDetailsPage = () => {
                     </p>
 
                     {/* Treatment Steps */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 leading-relaxed">
                         <div className="flex flex-col">
                             <h3 className="text-xl font-semibold mb-3">01. Make an Appointment</h3>
-                            <p>
+                            <p className="text-lg">
                                 The first step is to schedule an appointment, where our specialists will gather essential details about your medical history, current symptoms, and lifestyle. This may also include a physical examination or initial diagnostic tests to assess your condition accurately.
                             </p>
                         </div>
 
                         <div className="flex flex-col ">
                             <h3 className="text-xl font-semibold mb-3">02. Diagnosis Based on Information</h3>
-                            <p>
+                            <p className="text-lg">
                                 After evaluating the gathered information, our healthcare team will perform a detailed diagnosis. This step may include advanced tests like ECG, stress testing, or cardiac imaging to identify the root cause of your condition.
                             </p>
                         </div>
 
                         <div className="flex flex-col">
                             <h3 className="text-xl font-semibold mb-3">03. Treatment Planning</h3>
-                            <p>
+                            <p className="text-lg">
                                 Based on the diagnosis, a customized treatment plan will be developed to address your specific condition. This plan ensures the best possible outcomes, encompassing lifestyle recommendations, medications, and, if needed, interventional procedures.
                             </p>
                         </div>
 
                         <div className="flex flex-col">
                             <h3 className="text-xl font-semibold mb-3">04. Implementation of Treatment</h3>
-                            <p>
+                            <p className="text-lg">
                                 The treatment plan is then put into action. This may involve administering medications, performing minimally invasive procedures, or surgeries. Throughout the process, our team ensures that you receive continuous support and monitoring for your recovery.
                             </p>
                         </div>
@@ -123,7 +149,7 @@ const DepartmentDetailsPage = () => {
 
 
                 <div className="leading-relaxed py-24">
-                    <h2 className="text-3xl md:text-4xl font-semibold mb-8">Benefits of Gynecology Treatment</h2>
+                    <h2 className="text-3xl md:text-4xl font-semibold mb-5">Benefits of Gynecology Treatment</h2>
                     <p className="text-lg">
                         Gynecology treatments ensure women's reproductive health through early detection of issues, management of chronic conditions like PCOS and fibroids, and personalized care for all life stages. Regular check-ups prevent serious diseases, enhance quality of life, and address menstrual, fertility, and menopause concerns for overall well-being.
                     </p>

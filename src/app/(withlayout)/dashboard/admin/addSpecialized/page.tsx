@@ -1,7 +1,21 @@
 "use client";
 
-import { useForm, useFieldArray } from "react-hook-form";
+import { useForm, useFieldArray, SubmitHandler } from "react-hook-form";
 import { PlusCircleIcon, TrashIcon } from "@heroicons/react/24/outline";
+
+interface Service {
+  service: string;
+}
+
+interface FormData {
+  title: string;
+  subDescription: string;
+  longDescription: string;
+  mainImage: FileList | null;
+  iconImage: FileList | null;
+  benifit: string;
+  services: Service[];
+}
 
 const AddSpecializedForm = () => {
   const {
@@ -9,135 +23,265 @@ const AddSpecializedForm = () => {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<FormData>({
     defaultValues: {
       title: "",
       subDescription: "",
       longDescription: "",
       mainImage: null,
       iconImage: null,
-      benefits: [{ benefit: "" }],
+      benifit: "",
+      services: [{ service: "" }],
     },
   });
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "benefits",
+    name: "services",
   });
 
-  const onSubmit = (data: any) => {
-    console.log("Form Submitted:", data);
+  const uploadToCloudinary = async (file: File): Promise<string> => {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "your_upload_preset"); // Replace with actual Cloudinary upload preset
+    const url = `https://api.cloudinary.com/v1_1/doctorsShedule/image/upload`; // Replace with your Cloudinary cloud name
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("Cloudinary Error Response:", errorData);
+        throw new Error("Failed to upload image");
+      }
+
+      const data = await response.json();
+      return data.secure_url; // The URL of the uploaded image
+    } catch (error) {
+      console.error("Error uploading images:", error);
+      throw error;
+    }
+  };
+
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    try {
+      const mainImageFile = data.mainImage?.[0];
+      const iconImageFile = data.iconImage?.[0];
+
+      // Upload images if they exist
+      const mainImageURL = mainImageFile
+        ? await uploadToCloudinary(mainImageFile)
+        : null;
+
+      const iconImageURL = iconImageFile
+        ? await uploadToCloudinary(iconImageFile)
+        : null;
+
+      // Form data with hosted image URLs
+      const formDataWithImages = {
+        ...data,
+        mainImage: mainImageURL,
+        iconImage: iconImageURL,
+      };
+
+      console.log("Form Submitted with Hosted Images:", formDataWithImages);
+    } catch (error) {
+      console.error("Error uploading images:", error);
+    }
   };
 
   return (
-    <div className="">
-      <div className="">
-        {/* Form Header */}
-        <h4 className=" text-center uppercase font-semibold mb-5 tracking-wider">Add <span className="text-primary">Specialized</span> Details</h4>
-
-        {/* Form */}
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          {/* Title */}
+    <div className="text-sm">
+      <div className="text-textLight">
+        <h4 className="text-center text-lg uppercase font-semibold mb-2 tracking-wider">
+          Add <span className="text-primary">Specialized</span> Details
+        </h4>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="bg-[#fafbfe] px-6 py-4 space-y-5 text-primary"
+        >
           <div>
-            <label htmlFor="title" className="block text-sm font-semibold text-gray-700">
+            <label htmlFor="title" className="block text-sm font-semibold">
               Title
             </label>
-            <div className="relative mt-2">
-              <input
-                id="title"
-                {...register("title", { required: "Title is required" })}
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 pr-12 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                placeholder="Enter title"
-              />
-            </div>
+            <input
+              id="title"
+              {...register("title", { required: "Title is required" })}
+              className="w-full bg-[#f1f5ff] mt-[2px] border rounded px-4 py-2 border-btnClr focus:outline-none"
+              placeholder="Enter title"
+            />
             {errors.title && (
-              <p className="text-red-500 text-sm mt-1">{errors.title.message}</p>
+              <p className="text-red-500 text-sm mt-[2px]">{errors.title.message}</p>
             )}
           </div>
 
-          {/* Sub Description */}
           <div>
-            <label htmlFor="subDescription" className="block text-sm font-semibold text-gray-700">
+            <label
+              htmlFor="subDescription"
+              className="block text-sm font-semibold"
+            >
               Sub Description
             </label>
-            <div className="relative mt-2">
-              <input
-                id="subDescription"
-                {...register("subDescription", { required: "Sub Description is required" })}
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 pr-12 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                placeholder="Enter sub description"
-              />
-            </div>
+            <textarea
+              id="subDescription"
+              {...register("subDescription", {
+                required: "Sub Description is required",
+              })}
+              className="w-full bg-[#f1f5ff] border mt-[2px] border-btnClr rounded px-4 py-2 focus:outline-none"
+              placeholder="Enter sub description"
+              rows={2}
+            />
             {errors.subDescription && (
-              <p className="text-red-500 text-sm mt-1">{errors.subDescription.message}</p>
+              <p className="text-red-500 text-sm">
+                {errors.subDescription.message}
+              </p>
             )}
           </div>
 
-          {/* Long Description */}
           <div>
-            <label htmlFor="longDescription" className="block text-sm font-semibold text-gray-700">
+            <label
+              htmlFor="longDescription"
+              className="block text-sm font-semibold"
+            >
               Long Description
             </label>
             <textarea
               id="longDescription"
-              {...register("longDescription", { required: "Long Description is required" })}
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 mt-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              {...register("longDescription", {
+                required: "Long Description is required",
+              })}
+              className="w-full bg-[#f1f5ff] border rounded px-4 py-2 mt-[2px] border-btnClr focus:outline-none"
               rows={4}
               placeholder="Enter long description"
-            ></textarea>
+            />
             {errors.longDescription && (
-              <p className="text-red-500 text-sm mt-1">{errors.longDescription.message}</p>
+              <p className="text-red-500 text-sm ">
+                {errors.longDescription.message}
+              </p>
             )}
           </div>
 
-          {/* Main Image */}
-          <div>
-            <label htmlFor="mainImage" className="block text-sm font-semibold text-gray-700">
-              Main Image
-            </label>
-            <div className="mt-2 flex items-center gap-2">
+
+
+
+
+
+{/* 
+          <div className="flex flex-col md:flex-row gap-2">
+            <div className="w-full">
+              <label className="block mb-[2px] text-sm font-semibold">
+                Main Image
+              </label>
               <input
                 type="file"
                 id="mainImage"
-                {...register("mainImage", { required: "Main Image is required" })}
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                {...register("mainImage", {
+                  required: "Main Image is required",
+                })}
+                className="hidden"
+              // className="w-full bg-[#f1f5ff] border rounded px-4 py-2 border-btnClr focus:outline-none"
               />
-            </div>
-            {errors.mainImage && (
-              <p className="text-red-500 text-sm mt-1">{errors.mainImage.message}</p>
-            )}
-          </div>
 
-          {/* Icon Image */}
-          <div>
-            <label htmlFor="iconImage" className="block text-sm font-semibold text-gray-700">
-              Icon Image
-            </label>
-            <div className="mt-2 flex items-center gap-2">
+              <label
+                htmlFor="mainImage"
+                className="w-full block bg-[#f1f5ff] border rounded px-4 py-[11px] cursor-pointer border-btnClr focus:outline-none"
+              >
+                <span className="border border-primary bg-btnClr text-white py-[5px] px-2 rounded-[2px]">Choose File</span>
+              </label>
+              {errors.mainImage && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.mainImage.message}
+                </p>
+              )}
+            </div>
+
+
+            <div className="w-full">
+              <label className="block text-sm font-semibold">
+                Icon Image
+              </label>
               <input
                 type="file"
                 id="iconImage"
-                {...register("iconImage", { required: "Icon Image is required" })}
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                {...register("iconImage", {
+                  required: "Icon Image is required",
+                })}
+                className="hidden"
+              // className="w-full bg-[#f1f5ff] border rounded px-4 py-2 border-btnClr focus:outline-none"
               />
+
+              <label
+                htmlFor="iconImage"
+                className="w-full block bg-[#f1f5ff] border rounded px-4 py-[11px] cursor-pointer border-btnClr focus:outline-none"
+              >
+                <span className="border border-primary bg-btnClr text-white py-[5px] px-2 rounded-[2px]">Choose File</span>
+              </label>
+              {errors.iconImage && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.iconImage.message}
+                </p>
+              )}
             </div>
-            {errors.iconImage && (
-              <p className="text-red-500 text-sm mt-1">{errors.iconImage.message}</p>
-            )}
+          </div> */}
+
+
+
+
+          <div className="flex flex-col md:flex-row gap-2">
+            <div className="w-full">
+              <label className="block text-sm mb-[2px] font-semibold">
+                Main Image
+              </label>
+              <input
+                type="file"
+                id="mainImage"
+                {...register("mainImage", {
+                  required: "Main Image is required",
+                })}
+                className="w-full bg-[#f1f5ff] border rounded px-4 py-2 border-btnClr focus:outline-none"
+              />
+              {errors.mainImage && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.mainImage.message}
+                </p>
+              )}
+            </div>
+            <div className="w-full">
+              <label className="block text-sm mb-[2px] font-semibold">
+                Icon Image
+              </label>
+              <input
+                type="file"
+                id="iconImage"
+                {...register("iconImage", {
+                  required: "Icon Image is required",
+                })}
+                className="w-full bg-[#f1f5ff] border rounded px-4 py-2 border-btnClr focus:outline-none"
+              />
+              {errors.iconImage && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.iconImage.message}
+                </p>
+              )}
+            </div>
           </div>
 
-          {/* Benefits */}
           <div>
-            <label htmlFor="benefits" className="block text-sm font-semibold text-gray-700">
-              Benefits
+            <label htmlFor="services" className="block text-sm font-semibold">
+              Services
             </label>
-            <div className="space-y-4 mt-4">
+            <div className="space-y-4 mt-[2px]">
               {fields.map((field, index) => (
-                <div key={field.id} className="flex items-center gap-4 bg-gray-50 p-4 border border-gray-200 rounded-lg">
+                <div key={field.id} className="flex items-center gap-4">
                   <input
-                    {...register(`benefits.${index}.benefit`, { required: "Benefit is required" })}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                    placeholder={`Benefit ${index + 1}`}
+                    {...register(`services.${index}.service`, {
+                      required: "Service is required",
+                    })}
+                    className="w-full text-sm bg-[#f1f5ff] border focus:ring-2 focus:ring-primary rounded px-3 py-2 border-btnClr focus:outline-none"
+                    placeholder={`Service ${index + 1}`}
                   />
                   <button
                     type="button"
@@ -150,19 +294,36 @@ const AddSpecializedForm = () => {
               ))}
               <button
                 type="button"
-                onClick={() => append({ benefit: "" })}
-                className="flex items-center text-blue-600 hover:text-blue-800 font-semibold mt-2"
+                onClick={() => append({ service: "" })}
+                className="flex items-center hover:text-btnHover duration-300 font-semibold"
               >
-                <PlusCircleIcon className="h-5 w-5 mr-2" />
-                Add Benefit
+                <PlusCircleIcon className="h-6 w-6 mr-2" />
+                Add Service
               </button>
             </div>
           </div>
 
-          {/* Submit Button */}
+          <div>
+            <label htmlFor="benifit" className="block text-sm font-semibold">
+              Benefit
+            </label>
+            <textarea
+              id="benifit"
+              {...register("benifit", { required: "Benefit is required" })}
+              className="w-full bg-[#f1f5ff] border rounded px-4 py-2 mt-[2px] border-btnClr focus:outline-none"
+              rows={4}
+              placeholder="Enter benefit"
+            />
+            {errors.benifit && (
+              <p className="text-red-500 text-sm mt-[2px]">
+                {errors.benifit.message}
+              </p>
+            )}
+          </div>
+
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-400 focus:outline-none font-semibold transition"
+            className="w-full text-white py-2 rounded border-btnClr bg-primary hover:bg-btnHover focus:outline-none uppercase duration-500"
           >
             Submit
           </button>
@@ -174,223 +335,3 @@ const AddSpecializedForm = () => {
 
 export default AddSpecializedForm;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// "use client";
-
-// import { useForm, useFieldArray } from "react-hook-form";
-
-// const AddSpecializedForm = () => {
-//   const {
-//     register,
-//     control,
-//     handleSubmit,
-//     formState: { errors },
-//   } = useForm({
-//     defaultValues: {
-//       title: "",
-//       subDescription: "",
-//       longDescription: "",
-//       mainImage: null,
-//       iconImage: null,
-//       benefits: [{ benefit: "" }],
-//     },
-//   });
-
-//   const { fields, append, remove } = useFieldArray({
-//     control,
-//     name: "benefits",
-//   });
-
-//   const onSubmit = (data: any) => {
-//     console.log("Form Submitted:", data);
-//   };
-
-//   return (
-//     <div className="">
-//       <div className="">
-//         {/* Form Header */}
-//         <h4 className=" text-center uppercase font-semibold mb-5 tracking-wider">Add <span className="text-primary">Specialized</span> Details</h4>
-
-//         {/* Form */}
-//         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-//           {/* Title */}
-//           <div>
-//             <label
-//               htmlFor="title"
-//               className="block text-sm font-semibold text-gray-700"
-//             >
-//               Title
-//             </label>
-//             <input
-//               id="title"
-//               {...register("title", { required: "Title is required" })}
-//               className="w-full border border-gray-300 rounded-lg px-4 py-3 mt-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-//               placeholder="Enter title"
-//             />
-//             {errors.title && (
-//               <p className="text-red-500 text-sm mt-1">{errors.title.message}</p>
-//             )}
-//           </div>
-
-//           {/* Sub Description */}
-//           <div>
-//             <label
-//               htmlFor="subDescription"
-//               className="block text-sm font-semibold text-gray-700"
-//             >
-//               Sub Description
-//             </label>
-//             <input
-//               id="subDescription"
-//               {...register("subDescription", {
-//                 required: "Sub Description is required",
-//               })}
-//               className="w-full border border-gray-300 rounded-lg px-4 py-3 mt-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-//               placeholder="Enter sub description"
-//             />
-//             {errors.subDescription && (
-//               <p className="text-red-500 text-sm mt-1">
-//                 {errors.subDescription.message}
-//               </p>
-//             )}
-//           </div>
-
-//           {/* Long Description */}
-//           <div>
-//             <label
-//               htmlFor="longDescription"
-//               className="block text-sm font-semibold text-gray-700"
-//             >
-//               Long Description
-//             </label>
-//             <textarea
-//               id="longDescription"
-//               {...register("longDescription", {
-//                 required: "Long Description is required",
-//               })}
-//               className="w-full border border-gray-300 rounded-lg px-4 py-3 mt-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-//               rows={4}
-//               placeholder="Enter long description"
-//             ></textarea>
-//             {errors.longDescription && (
-//               <p className="text-red-500 text-sm mt-1">
-//                 {errors.longDescription.message}
-//               </p>
-//             )}
-//           </div>
-
-//           {/* Main Image */}
-//           <div>
-//             <label
-//               htmlFor="mainImage"
-//               className="block text-sm font-semibold text-gray-700"
-//             >
-//               Main Image
-//             </label>
-//             <input
-//               type="file"
-//               id="mainImage"
-//               {...register("mainImage", {
-//                 required: "Main Image is required",
-//               })}
-//               className="w-full border border-gray-300 rounded-lg px-4 py-3 mt-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-//             />
-//             {errors.mainImage && (
-//               <p className="text-red-500 text-sm mt-1">
-//                 {errors.mainImage.message}
-//               </p>
-//             )}
-//           </div>
-
-//           {/* Icon Image */}
-//           <div>
-//             <label
-//               htmlFor="iconImage"
-//               className="block text-sm font-semibold text-gray-700"
-//             >
-//               Icon Image
-//             </label>
-//             <input
-//               type="file"
-//               id="iconImage"
-//               {...register("iconImage", {
-//                 required: "Icon Image is required",
-//               })}
-//               className="w-full border border-gray-300 rounded-lg px-4 py-3 mt-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-//             />
-//             {errors.iconImage && (
-//               <p className="text-red-500 text-sm mt-1">
-//                 {errors.iconImage.message}
-//               </p>
-//             )}
-//           </div>
-
-//           {/* Benefits */}
-//           <div>
-//             <label
-//               htmlFor="benefits"
-//               className="block text-sm font-semibold text-gray-700"
-//             >
-//               Benefit Options
-//             </label>
-//             <div className="space-y-4 mt-4">
-//               {fields.map((field, index) => (
-//                 <div
-//                   key={field.id}
-//                   className="flex items-center gap-4 bg-gray-50 p-4 border border-gray-200 rounded-lg"
-//                 >
-//                   <input
-//                     {...register(`benefits.${index}.benefit`, {
-//                       required: "Benefit is required",
-//                     })}
-//                     className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-//                     placeholder={`Benefit ${index + 1}`}
-//                   />
-//                   <button
-//                     type="button"
-//                     className="text-red-500 hover:text-red-700"
-//                     onClick={() => remove(index)}
-//                   >
-//                     Remove
-//                   </button>
-//                 </div>
-//               ))}
-//               <button
-//                 type="button"
-//                 onClick={() => append({ benefit: "" })}
-//                 className="text-blue-600 hover:text-blue-800 font-semibold mt-2"
-//               >
-//                 + Add Benefit
-//               </button>
-//             </div>
-//           </div>
-
-//           {/* Submit Button */}
-//           <button
-//             type="submit"
-//             className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-400 focus:outline-none font-semibold transition"
-//           >
-//             Submit
-//           </button>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default AddSpecializedForm;
