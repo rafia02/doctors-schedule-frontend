@@ -84,7 +84,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
             </button>
           </div>
 
-          <div className="bg-white  w-full">
+          <div className="bg-white p-5 mb-10  w-full">
             {children}
           </div>
         </section>

@@ -323,7 +323,7 @@ const AddSpecializedForm = () => {
 
           <button
             type="submit"
-            className="w-full text-white py-2 rounded border-btnClr bg-primary hover:bg-btnHover focus:outline-none uppercase duration-500"
+            className="w-full text-white py-[10px] rounded border-btnClr bg-primary hover:bg-btnHover focus:outline-none uppercase duration-500"
           >
             Submit
           </button>
