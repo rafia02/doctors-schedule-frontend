@@ -3,6 +3,9 @@ import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { useState } from "react";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/16/solid";
 import PhoneInput from "react-phone-input-2";
+import { userSingUp } from "@/service/authService";
+import { useDoctorRegisterMutation } from "@/redux/api/doctorsApi";
+
 
 // Define form inputs
 interface DoctorSignUpFormInputs {
@@ -24,12 +27,50 @@ interface DoctorSignUpFormInputs {
 const DoctorSignUpPage = () => {
   const { register, handleSubmit, formState: { errors }, watch, control } = useForm<DoctorSignUpFormInputs>();
   const [showPassword, setShowPassword] = useState(false);
-
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
+  const [doctorRegister, {data, isSuccess, isError, error}] = useDoctorRegisterMutation()
 
-  const onSubmit: SubmitHandler<DoctorSignUpFormInputs> = (data) => {
-    console.log(data);
+  if(isSuccess){
+    console.log('doctor succesful in backend:', data)
+  }
+  if(isError){
+    console.log('doctor error in backend', error)
+  }
+
+
+
+  const onSubmit: SubmitHandler<DoctorSignUpFormInputs> = async (data) => {
+    
     // Handle form submission logic here (e.g., API calls)
+    const email = data.email
+    const password = data.password
+    console.log({data})
+
+    const doctorData = {
+      password: data.password,
+      doctor: {
+        title: data.doctorTitle,
+        name : { 
+          firstName: data.firstName,
+          lastName: data.lastName
+         },
+        email: data.email,
+        gender: data.gender,
+        dateOfBirth: data.dateOfBirth,
+        phone: data.phoneNumber,
+        specialization: data.specialization 
+      }
+    }
+
+    console.log({doctorData})
+
+    const doctor = await userSingUp(email, password)
+    // console.log('doctor', doctor)
+    if(doctor?.email){
+       doctorRegister({ data: doctorData })
+    }
+
+    
   }
 
 
@@ -37,7 +78,7 @@ const DoctorSignUpPage = () => {
 
 
   const titles = ['Dr.', 'Prof. Dr.', 'Assoc. Prof .Dr.', 'Asst. Prof. Dr.',];
-
+  const genders = ['male', 'female']
   return (
     <div className=" flex py-10  items-center justify-center bg-gray-100">
       <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 bg-[#dee8fe] rounded-lg shadow-lg overflow-hidden">
@@ -77,7 +118,7 @@ const DoctorSignUpPage = () => {
                 {...register('doctorTitle', { required: 'Title is required' })}
                 className=" block w-full py-2 px-4 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-gray-400"
               >
-                <option value="" disabled selected hidden >Select a title</option>
+                <option value="" disabled hidden >Select a title</option>
                 {titles.map((title, index) => (
                   <option key={index} value={title}>
                     {title}
@@ -143,29 +184,35 @@ const DoctorSignUpPage = () => {
               </div>
 
 
+           {/* modify gender */}
 
-              {/* Gender  */}
-              <div className="w-1/2">
-                <label htmlFor="email" className="block mb-[1px] text-textLight font-semibold">Gender</label>
-                <input
-                  id="email"
-                  type="text"
-                  {...register("gender", {
-                    required: "gender is required",
-                    pattern: {
-                      value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-                      message: "Invalid email address",
-                    },
-                  })}
-                  className={`w-full px-4 py-2 border ${errors.gender ? "border-red-500" : "border-gray-300"
-                    } rounded-md focus:outline-none focus:ring-btnClr focus:border-btnClr`}
-                  placeholder="Enter your email"
-                />
-                {errors.gender && (
-                  <span className="text-red-500 text-sm">{errors.gender.message}</span>
-                )}
-              </div>
+              <div  className="w-1/2">
+              <label htmlFor="gender" className="block mb-[1px] text-textLight font-semibold">Gender</label>
+
+              <select
+                id="doctor-gender"
+                {...register('gender', { required: 'gender is required' })}
+                className=" block w-full py-2 px-4 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-gray-400"
+              >
+                <option value="" disabled hidden >Select a gender</option>
+                {genders.map((gender, index) => (
+                  <option key={index} value={gender}>
+                    {gender}
+                  </option>
+                ))}
+              </select>
+
+              {errors.doctorTitle && (
+                <span className="text-red-500 text-sm">{errors.doctorTitle.message}</span>
+              )}
             </div>
+
+            </div>
+
+
+
+
+
 
 
 

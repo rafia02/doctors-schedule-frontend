@@ -8,6 +8,9 @@ import ShowNavber from "@/components/clientComponents/showNavber";
 import 'react-phone-input-2/lib/style.css'
 
 
+
+
+
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
 //   variable: "--font-geist-sans",
@@ -36,7 +39,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Providerr>
-          <div className="mb-16">
+          <div>
             <ShowNavber></ShowNavber>
           </div>
           {children}

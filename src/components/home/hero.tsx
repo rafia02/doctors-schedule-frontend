@@ -21,13 +21,13 @@ const Hero = () => {
         {/* Left Column (Text) */}
         <div className="md:w-3/5 px-5 md:px-8 py-5 text-center  md:mt-9 md:text-left">
           <p className="text-xl mb-4 uppercase text-textLight tracking-wider">Bringing You the Best in Healthcare</p>
-          <h1 className="text-5xl md:text-6xl font-semibold text-textDark font-jakarta">Quality <span className='text-primary'>Healthcare</span> Solution for all</h1>
+          <h1 className="text-5xl md:text-6xl font-semibold text-textDark ">Quality <span className='text-primary'>Healthcare</span> Solution for all</h1>
 
-          <p className="text-xl mt-6 text-textLight ">
+          <p className="text-lg mt-6 text-textLight ">
             <span className='font-semibold'>Doctors Schedule</span> is your trusted platform to connect with healthcare professionals, view their schedules, and book appointments with ease.
           </p>
 
-          <p className="text-xl mt-1 font-semibold text-textLight ">
+          <p className="text-lg mt-1 font-semibold text-textLight ">
             Schedule Appointments with Top Specialists Anytime, Anywhere.
           </p>
 

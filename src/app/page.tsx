@@ -4,6 +4,7 @@ import Hero from "@/components/home/hero"
 import OnlineServiceSection from "@/components/home/onlineServiceSection"
 import PatientCareServices from "@/components/home/patientCareServices"
 import SearchBar from "@/components/home/searchbar"
+import WhyBetter from "@/components/home/whyBetter"
 
 
 
@@ -16,6 +17,7 @@ const HomePage = () => {
       <PatientCareServices></PatientCareServices>
       <OnlineServiceSection></OnlineServiceSection>
       <Caring></Caring>
+      <WhyBetter></WhyBetter>
     </div>
   )
 }

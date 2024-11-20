@@ -22,7 +22,7 @@ const config: Config = {
       },
       fontFamily: {
         // roboto: ['"Roboto"', 'sans-serif'],
-        jakarta: ['"Plus Jakarta Sans"', 'sans-serif'],
+        // jakarta: ['"Plus Jakarta Sans"', 'sans-serif'],
       },
     },
   },

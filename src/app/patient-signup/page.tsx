@@ -8,6 +8,7 @@ import PhoneInput from 'react-phone-input-2'
 import { userSingUp } from "@/service/authService";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
+import { usePatientRegisterMutation } from "@/redux/api/doctorsApi";
 
 
 // Define form inputs
@@ -30,20 +31,55 @@ const PatientSignUpPage = () => {
   const { user, error } = useSelector((state:RootState)=> state.auth)
 
 
+  const [patientRegister, { data, isSuccess, isError, error:backendError } ] = usePatientRegisterMutation()
+
   console.log('success:', user)
   console.log('error:', error)
 
 
 
+  if(isSuccess){
+    console.log('backend user', data)
+  }
 
-  const onSubmit: SubmitHandler<SignUpFormInputs> = (data) => {
-    console.log('petient', data);
+  if(isError){
+    console.log('backend error', backendError)
+  }
+
+
+
+
+  const onSubmit: SubmitHandler<SignUpFormInputs> = async (data) => {
 
     // Handle form submission logic here (e.g., API calls)
     // const name = data.firstName + ' ' + data.lastName
     const email = data.email
     const password = data.password
-    userSingUp(email, password)
+    const user = await  userSingUp(email, password)
+
+    const patientData = {
+      password : data.password,
+      patient: {
+        name: {
+          firstName : data.firstName,
+          lastName : data.lastName
+         },
+        email: data.email,
+        phone: data.phoneNumber
+      }
+    }
+
+    if(user?.email){
+
+      patientRegister({
+        data : patientData
+      })
+
+    }
+
+    
+
+
   };
 
 
