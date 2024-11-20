@@ -29,7 +29,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
 
 
 
-    <div className="flex max-h-screen bg-gray-100">
+    <div className="flex  bg-gray-100">
       {/* Sidebar */}
 
 
@@ -45,7 +45,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
 
       <div
 
-        className={`fixed lg:static inset-y-0 left-0 transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        className={`fixed lg:static min-h-screen inset-y-0 left-0 transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"
           } lg:translate-x-0 w-80  bg-[#435b98] text-white p-5 transition-transform duration-200 ease-in-out z-10 shadow-lg`}
       // className={` transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"
       //   } lg:translate-x-0 md:w-96 h-full bg-[#435b98]  text-white p-5 transition-transform duration-200 ease-in-out z-10 shadow-lg`}
@@ -66,7 +66,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
 
       {/* className=" flex-wrap  px-4 md:p-6 py-5 md:py-6 " */}
 
-      <div className=" w-full md:ml-2 ">
+      <div className="w-full md:ml-2 max-h-screen overflow-y-auto no-scrollbar">
 
         {/* <header className="flex ml-12 md:ml-0 justify-between items-center mb-6">
             <h1 className="text-3xl text-primary font-semibold">Dashboard</h1>
@@ -75,16 +75,16 @@ const layout = ({ children }: { children: React.ReactNode }) => {
             </button>
           </header> */}
 
-        <section className=" w-full overflow-y-auto max-h-screen px-4 rounded">
+        <section className="w-full px-4 rounded">
 
-          <div className="flex  mt-5 justify-end items-center mb-6">
+          <div className="flex  mt-5 justify-end items-center pb-6">
             {/* <h1 className="text-3xl text-primary font-semibold">Dashboard</h1> */}
             <button className="bg-primary text-white px-5 py-2 rounded ">
               Logout
             </button>
           </div>
 
-          <div className="bg-white max-h-screen w-full">
+          <div className="bg-white  w-full">
             {children}
           </div>
         </section>

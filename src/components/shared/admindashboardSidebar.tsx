@@ -25,7 +25,7 @@ const AdminDashboardSidebar = ({ isSidebarOpen }: { isSidebarOpen: boolean }) =>
 
       {/* Main Navigation Links */}
       <div className="">
-        <nav className="flex h-[450px] overflow-y-auto  no-scrollbar flex-col gap-4 mb-6">
+        <nav className="flex max-h-[75vh] overflow-y-auto  no-scrollbar flex-col gap-4 mb-6">
           <Link
             href="/dashboard/admin/overview"
             className={`${linkClasses} ${isActive("/dashboard") ? "bg-[#4967b3]" : "hover:bg-[#4967b3]"
