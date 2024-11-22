@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Navber from "@/components/shared/Navber";
+import Navber from "@/components/shared/navber/Navber";
 import Footer from "@/components/shared/footer/Footer";
 import Providerr from "@/components/provider/Provider";
 import ShowNavber from "@/components/clientComponents/showNavber";

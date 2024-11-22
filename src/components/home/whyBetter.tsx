@@ -25,14 +25,14 @@ const WhyBetter = () => {
                 </div> */}
 
 
-                <div className="w-1/2 pt-14 shadow-md rounded">
+                <div className="md:w-1/2 pt-14 border bg-secondery rounded">
                     <BenifitCountup></BenifitCountup>
                 </div>
 
 
 
 
-                <div className='w-1/2'>
+                <div className='md:w-1/2'>
                     <p className='tracking-widest text-primary font-semibold uppercase'>Our benefits</p>
                     <h1 className='text-5xl my-5 font-bold'>Why we are better</h1>
                     <p className='text-lg'>
