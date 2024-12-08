@@ -1,5 +1,5 @@
 "use client"
-import { AcademicCapIcon, CalendarIcon, ChartBarIcon, ChevronDownIcon, ChevronUpIcon, CogIcon, DocumentTextIcon, HomeIcon, InboxIcon, UserGroupIcon } from "@heroicons/react/16/solid"
+import { AcademicCapIcon, CalendarIcon, ChartBarIcon, ChatBubbleBottomCenterIcon, ChatBubbleBottomCenterTextIcon, ChevronDownIcon, ChevronUpIcon, CogIcon, DocumentTextIcon, EnvelopeIcon, HomeIcon, InboxIcon, SquaresPlusIcon, UserGroupIcon, UserIcon, UsersIcon } from "@heroicons/react/16/solid"
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import Link from "next/link"
 import { usePathname } from "next/navigation";
@@ -25,13 +25,13 @@ const AdminDashboardSidebar = ({ isSidebarOpen }: { isSidebarOpen: boolean }) =>
 
       {/* Main Navigation Links */}
       <div className="">
-        <nav className="flex max-h-[75vh] overflow-y-auto  no-scrollbar flex-col gap-4 mb-6">
+        <nav className="flex text-gray-200 max-h-[75vh] overflow-y-auto  no-scrollbar flex-col gap-4 mb-6">
           <Link
             href="/dashboard/admin/overview"
-            className={`${linkClasses} ${isActive("/dashboard") ? "bg-[#4967b3]" : "hover:bg-[#4967b3]"
+            className={`${linkClasses} ${isActive("/dashboard/admin/overview") ? "bg-[#4967b3]" : "hover:bg-[#4967b3]"
               }`}
           >
-            <HomeIcon className="w-6 h-6 mr-3" />
+            <SquaresPlusIcon className="w-6 h-6 mr-3" />
             Dashboard Overview
           </Link>
 
@@ -49,7 +49,7 @@ const AdminDashboardSidebar = ({ isSidebarOpen }: { isSidebarOpen: boolean }) =>
             className={`${linkClasses} ${isActive("/dashboard/doctors") ? "bg-[#4967b3]" : "hover:bg-[#4967b3]"
               }`}
           >
-            <UserGroupIcon className="w-6 h-6 mr-3" />
+            <UsersIcon className="w-6 h-6 mr-3" />
             Doctors
           </Link>
 
@@ -58,7 +58,7 @@ const AdminDashboardSidebar = ({ isSidebarOpen }: { isSidebarOpen: boolean }) =>
             className={`${linkClasses} ${isActive("/dashboard/patients") ? "bg-[#4967b3]" : "hover:bg-[#4967b3]"
               }`}
           >
-            <UserGroupIcon className="w-6 h-6 mr-3" />
+            <UserIcon className="w-6 h-6 mr-3" />
             Patients
           </Link>
 
@@ -76,7 +76,7 @@ const AdminDashboardSidebar = ({ isSidebarOpen }: { isSidebarOpen: boolean }) =>
             className={`${linkClasses} ${isActive("/dashboard/messages") ? "bg-[#4967b3]" : "hover:bg-[#4967b3]"
               }`}
           >
-            <InboxIcon className="w-6 h-6 mr-3" />
+            <ChatBubbleBottomCenterTextIcon className="w-6 h-6 mr-3" />
             Messages
           </Link>
 

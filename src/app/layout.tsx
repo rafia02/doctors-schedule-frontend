@@ -37,9 +37,9 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body>
+      <body className="max-w-screen-2xl mx-auto">
         <Providerr>
-          <div>
+          <div className="relative">
             <ShowNavber></ShowNavber>
           </div>
           {children}

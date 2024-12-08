@@ -35,7 +35,7 @@ const Caring = () => {
 
             <div>
               <Image className="relative rounded border-8 border-white " src="https://media.istockphoto.com/id/1183441656/photo/nurse-holding-patients-hands.jpg?s=612x612&w=0&k=20&c=GL6iuL1MFCpvPRJCaQUa5yrkLxW7U19uz7RJojkzBWw=" height={350} width={450} alt=""></Image>
-              <div className="absolute backdrop-blur-sm border-r-4 border-r-primary bg-white/50 px-4 py-2 -left-9 top-7">
+              <div className="absolute backdrop-blur-sm border-r-4 border-r-primary bg-white/50 px-4 py-2  lg:left-[65px] top-7">
                 <div className="flex items-center gap-2">
                   <Image src="https://img.icons8.com/?size=100&id=jShwZ2RCyPSO&format=png&color=415da1" height={10} width={25} alt=""></Image>
                   <p className="font-bold">Free Consultation</p>
