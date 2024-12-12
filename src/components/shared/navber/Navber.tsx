@@ -19,7 +19,7 @@ const Navber = () => {
     monitorAuthState()
   }, [])
 
-  const email : any = user?.email
+  const email: any = user?.email
   const { data: role, isLoading, error } = useGetRoleQuery(email, {
     skip: !email,
   });
@@ -59,19 +59,28 @@ const Navber = () => {
             {
               role?.result === "patient" &&
               <Link href="/dashboard/patient/overview" className="hover:text-primary">
-              Dashboard
-            </Link> 
+                Dashboard
+              </Link>
             }
 
             {
-              role?.result === "doctor" && 
-              <Link href="/dashboard/admin/overview" className="hover:text-primary">
-              Dashboard
-            </Link>
+              role?.result === "doctor" &&
+              <Link href="/dashboard/doctor/overview" className="hover:text-primary">
+                Dashboard
+              </Link>
             }
 
 
-            
+
+            {
+              role?.result === "admin" &&
+              <Link href="/dashboard/admin/overview" className="hover:text-primary">
+                Dashboard
+              </Link>
+            }
+
+
+
             <Link href="/doctor-signup" className="hover:text-primary">
               For Doctor
             </Link>

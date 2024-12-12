@@ -9,6 +9,7 @@ import { RootState } from "@/redux/store"
 import { useGetRoleQuery } from "@/redux/api/roleApi"
 import { monitorAuthState } from "@/service/authService"
 import PatientDashboardSidebar from "@/components/shared/navber/patientdashboardSidebar"
+import DoctorDashboardSidebar from "@/components/shared/navber/doctordashboardSidebar"
 
 
 
@@ -56,8 +57,20 @@ const layout = ({ children }: { children: React.ReactNode }) => {
         <div className="">
 
           {
-            role?.result === "patient" ? <PatientDashboardSidebar></PatientDashboardSidebar> :  role?.result === "admin" ? <AdminDashboardSidebar></AdminDashboardSidebar> : ""
+             role?.result === "doctor" && <DoctorDashboardSidebar></DoctorDashboardSidebar>
           }
+
+          {
+            role?.result === "admin" && <AdminDashboardSidebar></AdminDashboardSidebar>
+          }
+
+          {
+            role?.result === "patient" && <PatientDashboardSidebar></PatientDashboardSidebar>
+          }
+
+          {/* {
+            role?.result === "doctor" ? <DoctorDashboardSidebar></DoctorDashboardSidebar> :  role?.result === "admin" ? <AdminDashboardSidebar></AdminDashboardSidebar> : role?.result === "patient" ? <PatientDashboardSidebar></PatientDashboardSidebar> : ""
+          } */}
         </div>
 
       </div>
