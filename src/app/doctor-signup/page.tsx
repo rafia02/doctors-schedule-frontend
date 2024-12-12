@@ -78,7 +78,7 @@ const DoctorSignUpPage = () => {
 
 
   const titles = ['Dr.', 'Prof. Dr.', 'Assoc. Prof .Dr.', 'Asst. Prof. Dr.',];
-  const genders = ['male', 'female']
+  const genders = ['Male', 'Female', 'Others']
   return (
     <div className=" flex py-10  items-center justify-center bg-gray-100">
       <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 bg-[#dee8fe] rounded-lg shadow-lg overflow-hidden">
@@ -116,7 +116,7 @@ const DoctorSignUpPage = () => {
               <select
                 id="doctor-title"
                 {...register('doctorTitle', { required: 'Title is required' })}
-                className=" block w-full py-2 px-4 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-gray-400"
+                className=" block w-full py-2 px-4 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               >
                 <option value="" disabled hidden >Select a title</option>
                 {titles.map((title, index) => (
@@ -192,7 +192,7 @@ const DoctorSignUpPage = () => {
               <select
                 id="doctor-gender"
                 {...register('gender', { required: 'gender is required' })}
-                className=" block w-full py-2 px-4 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-gray-400"
+                className=" block w-full py-2 px-4 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm "
               >
                 <option value="" disabled hidden >Select a gender</option>
                 {genders.map((gender, index) => (

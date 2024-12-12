@@ -1,7 +1,7 @@
 'use client'
 
 import { usePathname } from "next/navigation"
-import Navber from "../shared/Navber";
+import Navber from "../shared/navber/Navber";
 
 
 const ShowNavber = () => {

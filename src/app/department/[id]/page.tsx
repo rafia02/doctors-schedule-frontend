@@ -25,7 +25,7 @@ const DepartmentDetailsPage = () => {
                 <div className="relative h-[40vh] md:h-[70vh] flex items-center ">
                     {/* Background Image */}
                     <Image
-                        src="https://img.freepik.com/premium-psd/medical-equipment-technology_538547-10504.jpg?w=1060"
+                        src="https://res.cloudinary.com/doctorsshedule/image/upload/v1732634912/z1nbxwtv9akal5fjvsaz.png"
                         alt="Hero Background"
                         layout="fill"
                         objectFit="cover"

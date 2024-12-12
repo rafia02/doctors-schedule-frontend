@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Navber from "@/components/shared/Navber";
+import Navber from "@/components/shared/navber/Navber";
 import Footer from "@/components/shared/footer/Footer";
 import Providerr from "@/components/provider/Provider";
 import ShowNavber from "@/components/clientComponents/showNavber";
@@ -37,9 +37,9 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body>
+      <body className="max-w-screen-2xl mx-auto">
         <Providerr>
-          <div>
+          <div className="relative">
             <ShowNavber></ShowNavber>
           </div>
           {children}

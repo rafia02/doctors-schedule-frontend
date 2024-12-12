@@ -32,7 +32,7 @@ const SearchBar = () => {
   return (
     <div className=" px-5 md:px-8 py-16"
       style={{
-        backgroundImage: `url("https://cdn.prod.website-files.com/65525600ad11f5d8bc8c342b/65525600ad11f5d8bc8c3434_Background%20Pattern.svg")`,
+        backgroundImage: `url("https://res.cloudinary.com/doctorsshedule/image/upload/v1732635877/ftks233x60q4eubrlg4s.png")`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
 

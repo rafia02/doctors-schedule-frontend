@@ -1,34 +1,37 @@
 "use client"
-import AdminDashboardSidebar from "@/components/shared/admindashboardSidebar"
-import { useState } from "react"
+import AdminDashboardSidebar from "@/components/shared/navber/admindashboardSidebar"
+import { useEffect, useState } from "react"
 import { Bars3Icon, CalendarIcon, CogIcon, HomeIcon, UserGroupIcon, XMarkIcon } from "@heroicons/react/16/solid"
 import Link from "next/link"
+import { AuthState } from "@/Types/authTypes"
+import { useSelector } from "react-redux"
+import { RootState } from "@/redux/store"
+import { useGetRoleQuery } from "@/redux/api/roleApi"
+import { monitorAuthState } from "@/service/authService"
+import PatientDashboardSidebar from "@/components/shared/navber/patientdashboardSidebar"
+
 
 
 const layout = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState("admin")
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+
+  const { user } = useSelector((state: RootState) => state.auth) as AuthState
+  useEffect(() => {
+    monitorAuthState()
+  }, [])
+  const email: any = user?.email
+
+  const { data: role, isLoading, error } = useGetRoleQuery(email, {
+    skip: !email,
+  });
+
+
+  console.log("roleeeeeeeee", role)
+
+
+
   return (
-
-    //   <div className="flex h-screen">
-    //   {/* Sidebar */}
-    //   <AdminDashboardSidebar isSidebarOpen={isSidebarOpen}></AdminDashboardSidebar>
-
-    //   {/* Main Content */}
-    //   <div className="flex-1 p-6 bg-gray-100 overflow-y-auto">
-    //     <header className="flex justify-between items-center mb-4">
-    //       <h1 className="text-2xl font-bold text-primary">Dashboard</h1>
-    //       <button className="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark">
-    //         Logout
-    //       </button>
-    //     </header>
-
-    //     <main className="bg-white p-6 rounded shadow">{children}</main>
-    //   </div>
-    // </div>
-
-
-
     <div className="flex  bg-gray-100">
       {/* Sidebar */}
 
@@ -46,13 +49,14 @@ const layout = ({ children }: { children: React.ReactNode }) => {
       <div
 
         className={`fixed lg:static min-h-screen inset-y-0 left-0 transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-          } lg:translate-x-0 w-80  bg-[#435b98] text-white p-5 transition-transform duration-200 ease-in-out z-10 shadow-lg`}
+          } lg:translate-x-0 w-[359px]  bg-[#3d5182] text-white p-5 transition-transform duration-200 ease-in-out z-10 shadow-lg`}
       // className={` transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"
       //   } lg:translate-x-0 md:w-96 h-full bg-[#435b98]  text-white p-5 transition-transform duration-200 ease-in-out z-10 shadow-lg`}
       >
         <div className="">
+
           {
-            user === "admin" ? <AdminDashboardSidebar isSidebarOpen={isSidebarOpen}></AdminDashboardSidebar> : ""
+            role?.result === "patient" ? <PatientDashboardSidebar></PatientDashboardSidebar> :  role?.result === "admin" ? <AdminDashboardSidebar></AdminDashboardSidebar> : ""
           }
         </div>
 
@@ -66,7 +70,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
 
       {/* className=" flex-wrap  px-4 md:p-6 py-5 md:py-6 " */}
 
-      <div className="w-full md:ml-2 max-h-screen overflow-y-auto no-scrollbar">
+      <div className="w-full max-h-screen overflow-y-auto no-scrollbar">
 
         {/* <header className="flex ml-12 md:ml-0 justify-between items-center mb-6">
             <h1 className="text-3xl text-primary font-semibold">Dashboard</h1>

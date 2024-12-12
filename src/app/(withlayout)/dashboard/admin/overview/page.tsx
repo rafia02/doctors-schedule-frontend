@@ -14,7 +14,7 @@ const DashboardOverView = () => {
 
 
     // <div className="w-full bg-white max-h-screen">hdhd</div>
-    <div className="p-8 bg-white">
+    <div className="p-8  bg-white">
       {/* Header */}
       <header className="mb-8">
         <h1 className="text-4xl font-bold text-gray-800">Dashboard</h1>
