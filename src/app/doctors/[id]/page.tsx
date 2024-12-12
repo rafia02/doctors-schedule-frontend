@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Bars3Icon } from "@heroicons/react/16/solid";
-
+import MultiRangeSlider from "multi-range-slider-react";
 
 
 const departments = [
@@ -21,18 +21,34 @@ const departments = [
 const FindCatagoryDoctorPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [selectedDepartment, setSelectedDepartment] = useState("")
-
-
-  const handleSelectChange = (event) => {
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+  const handleSelectChange = (event: any) => {
     setSelectedDepartment(event.target.value)
-  };
+  }
+
+  const [minValue, setMinValue] = useState(0);
+  const [maxValue, setMaxValue] = useState(500);
+
+  const handleInput = (e: any) => {
+    setMinValue(e.minValue);
+    setMaxValue(e.maxValue);
+  }
+
+
+  const handleFilterChange = (filter: string) => {
+    setSelectedFilters((prev) =>
+      prev.includes(filter)
+        ? prev.filter((item) => item !== filter)
+        : [...prev, filter]
+    );
+  }
 
 
   return (
-    <div className="bg-[#fafaff]">
+    <div className="bg-[#f9f9fc]">
       {/* Hero Section */}
       <div>
-        <div className="relative h-[40vh] md:h-[330px] flex items-center">
+        <div className="relative h-[40vh] md:h-[250px] flex items-center">
           {/* Background Image */}
           <Image
             src="https://res.cloudinary.com/doctorsshedule/image/upload/v1732638139/diljgjhk7fgmbvv6i5f9.png"
@@ -63,24 +79,24 @@ const FindCatagoryDoctorPage = () => {
             className="flex items-center gap-2 text-lg font-medium md:hidden mb-4"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            <Bars3Icon className="w-6 h-6" />
+            <Bars3Icon className="w-[18px] h-[18px]" />
             <span>Find Doctor</span>
           </button>
 
           {/* Sidebar Menu */}
           <div
             className={`${isMenuOpen ? "block" : "hidden"
-              } md:block shadow-lg rounded-md bg-white sticky top-5 h-auto md:h-[calc(100vh-4rem)] p-4`}
+              } md:block shadow-lg rounded-xl bg-white sticky top-5 h-auto md:h-[calc(100vh-4rem)] py-7`}
           >
-            <div className="flex justify-between items-center w-full mb-4">
+            <div className="flex px-5 justify-between items-center w-full mb-4">
               <p className="font-bold text-lg">Find Doctor</p>
               <button className="text-sm text-blue-500">Clear All</button>
             </div>
 
-            <div>
+            <div className="bg-[#213567] px-5 pt-7 pb-9">
               <label
                 htmlFor="department"
-                className="block text-gray-700 font-semibold mb-2"
+                className="block text-lg font-semibold mb-3 text-white"
               >
                 Select Department
               </label>
@@ -88,7 +104,7 @@ const FindCatagoryDoctorPage = () => {
                 id="department"
                 value={selectedDepartment}
                 onChange={handleSelectChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 border border-gray-300 rounded shadow-sm focus:outline-none"
               >
                 <option value="" disabled>
                   Choose a department
@@ -99,18 +115,65 @@ const FindCatagoryDoctorPage = () => {
                   </option>
                 ))}
               </select>
-              {selectedDepartment && (
-                <p className="mt-3 text-sm text-gray-600">
-                  You selected:{" "}
-                  <span className="font-medium text-blue-500">
-                    {selectedDepartment}
-                  </span>
-                </p>
-              )}
+
             </div>
-            <p className="text-gray-700 text-sm">
-              Use filters to find doctors based on specialty, location, and more.
-            </p>
+
+
+            <div className="px-5 mt-8">
+              <div className="my-5">
+                <h1 className="text-lg font-semibold">Consultation Fee</h1>
+                <MultiRangeSlider
+                  min={0} // Minimum range of the slider
+                  max={1000} // Maximum range of the slider
+                  minValue={minValue} // Set default selected min value
+                  maxValue={maxValue} // Set default selected max value
+                  step={1}
+                  ruler={false}
+                  label={false}
+                  barInnerColor="#415da1"
+                  className="!shadow-none !border-none"
+                  onInput={handleInput}
+                />
+                <div>
+                  Price: {minValue} $ - {maxValue} $
+                </div>
+              </div>
+            </div>
+
+            <div className="mb-4 px-5">
+  <label className="flex items-center mb-4">
+    <input
+      type="checkbox"
+      value="Online Now"
+      checked={selectedFilters.includes("Online Now")}
+      onChange={() => handleFilterChange("Online Now")}
+      className="w-[18px] h-[18px] mr-3 accent-blue-800" // Larger checkbox and color
+    />
+    <span className="">Online Now</span> {/* Centered Label */}
+  </label>
+  <label className="flex items-center mb-4">
+    <input
+      type="checkbox"
+      value="Female Doctors"
+      checked={selectedFilters.includes("Female Doctors")}
+      onChange={() => handleFilterChange("Female Doctors")}
+      className="w-[18px] h-[18px] mr-3 accent-blue-800" // Larger checkbox and pink color for Female
+    />
+    <span className="">Female Doctors</span> {/* Centered Label */}
+  </label>
+  <label className="flex items-center mb-4">
+    <input
+      type="checkbox"
+      value="Male Doctors"
+      checked={selectedFilters.includes("Male Doctors")}
+      onChange={() => handleFilterChange("Male Doctors")}
+      className="w-[18px] h-[18px] mr-3 accent-blue-800" // Larger checkbox and dark blue color for Male
+    />
+    <span className="">Male Doctors</span> {/* Centered Label */}
+  </label>
+</div>
+
+
           </div>
         </div>
 

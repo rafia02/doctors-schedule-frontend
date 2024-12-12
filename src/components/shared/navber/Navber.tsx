@@ -1,4 +1,5 @@
 "use client"
+import { useGetRoleQuery } from "@/redux/api/roleApi";
 import { RootState } from "@/redux/store";
 import { logout, monitorAuthState } from "@/service/authService";
 import { AuthState } from "@/Types/authTypes";
@@ -18,7 +19,13 @@ const Navber = () => {
     monitorAuthState()
   }, [])
 
+  const email : any = user?.email
+  const { data: role, isLoading, error } = useGetRoleQuery(email, {
+    skip: !email,
+  });
 
+
+  console.log(role)
 
   const handleLogout = () => {
     console.log('logout')
@@ -47,9 +54,24 @@ const Navber = () => {
             <Link href="/about" className="hover:text-primary">
               About
             </Link>
-            <Link href="/dashboard/admin/overview" className="hover:text-primary">
+
+
+            {
+              role?.result === "patient" &&
+              <Link href="/dashboard/patient/overview" className="hover:text-primary">
+              Dashboard
+            </Link> 
+            }
+
+            {
+              role?.result === "doctor" && 
+              <Link href="/dashboard/admin/overview" className="hover:text-primary">
               Dashboard
             </Link>
+            }
+
+
+            
             <Link href="/doctor-signup" className="hover:text-primary">
               For Doctor
             </Link>

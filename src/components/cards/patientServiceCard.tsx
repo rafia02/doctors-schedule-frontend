@@ -9,7 +9,7 @@ const PatientServiceCard = () => {
             <div className="flex">
                 <div className="w-3/6 md:w-2/5 rounded-tl rounded-bl flex flex-col px-6 py-9 justify-between bg-primary">
                     <h3 className="text-lg md:text-2xl text-white  font-bold tracking-wide ">Dental Care</h3>
-                    <Link className="text-white" href="">
+                    <Link className="text-white" href="/doctors/2">
                         <ArrowRightCircleIcon className="w-10 h-10"></ArrowRightCircleIcon>
                     </Link>
                 </div>
