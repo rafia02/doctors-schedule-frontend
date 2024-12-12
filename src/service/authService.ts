@@ -42,6 +42,7 @@ export const userSingIn = async (email:string, password:string) => {
         };
 
         store.dispatch(loginSuccess(userData))
+        return user
       }catch(error){
         const errorMessage = (error as FirebaseError).message;
         store.dispatch(loginFailure(errorMessage)) 

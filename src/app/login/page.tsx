@@ -14,7 +14,7 @@ interface LoginFormType {
 }
 
 export default function LoginPage() {
-  const { register,handleSubmit,formState: { errors } } = useForm<LoginFormType>();
+  const { register,handleSubmit, reset, formState: { errors } } = useForm<LoginFormType>();
   const [showPassword, setShowPassword] = useState(false)
   const togglePassword = () => setShowPassword(!showPassword);
   
@@ -25,14 +25,21 @@ export default function LoginPage() {
 
 
 
-  const onSubmit: SubmitHandler<LoginFormType> = (data) => {
-    console.log("user login", data);
+  const onSubmit: SubmitHandler<LoginFormType> =async (data) => {
+    // console.log("user login", data);
     const email = data.email
     const password = data.password
 
-    userSingIn(email, password)
+    const result = await  userSingIn(email, password)
+    if(result?.email){
 
+      
+      // if login successful
+      reset()
+    }
   };
+
+
 
   return (
     <div className="flex py-10  items-center justify-center bg-gray-50">
