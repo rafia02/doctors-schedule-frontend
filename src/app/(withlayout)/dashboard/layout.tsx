@@ -54,12 +54,9 @@ const layout = ({ children }: { children: React.ReactNode }) => {
       //   } lg:translate-x-0 md:w-96 h-full bg-[#435b98]  text-white p-5 transition-transform duration-200 ease-in-out z-10 shadow-lg`}
       >
         <div className="">
-          {
-            role?.result === "admin" && <AdminDashboardSidebar></AdminDashboardSidebar>
-          }
 
           {
-            role?.result === "patient" && <PatientDashboardSidebar></PatientDashboardSidebar>
+            role?.result === "patient" ? <PatientDashboardSidebar></PatientDashboardSidebar> :  role?.result === "admin" ? <AdminDashboardSidebar></AdminDashboardSidebar> : ""
           }
         </div>
 
