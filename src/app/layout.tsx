@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
-import Navber from "@/components/shared/navber/Navber";
+// import Navber from "@/components/shared/navber/Navber";
 import Footer from "@/components/shared/footer/Footer";
 import Providerr from "@/components/provider/Provider";
 import ShowNavber from "@/components/clientComponents/showNavber";
@@ -43,7 +42,7 @@ export default function RootLayout({
             <ShowNavber></ShowNavber>
           </div>
           {children}
-          {/* <Footer></Footer> */}
+          <Footer/>
         </Providerr>
 
       </body>

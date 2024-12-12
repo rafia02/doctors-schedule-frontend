@@ -9,7 +9,7 @@ import { userSingUp } from "@/service/authService";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { usePatientRegisterMutation } from "@/redux/api/doctorsApi";
-
+import Swal from 'sweetalert2'
 
 // Define form inputs
 interface SignUpFormInputs {
@@ -25,7 +25,7 @@ interface SignUpFormInputs {
 
 
 const PatientSignUpPage = () => {
-  const { register, handleSubmit, formState: { errors }, watch, control } = useForm<SignUpFormInputs>();
+  const { register, handleSubmit, reset, formState: { errors }, watch, control } = useForm<SignUpFormInputs>();
   const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
   const { user, error } = useSelector((state:RootState)=> state.auth)
@@ -40,10 +40,26 @@ const PatientSignUpPage = () => {
 
   if(isSuccess){
     console.log('backend user', data)
+    if(data.success){
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: data.message,
+        showConfirmButton: false,
+        timer: 1500
+      });
+     }
   }
 
   if(isError){
     console.log('backend error', backendError)
+    Swal.fire({
+      position: "top-end",
+      icon: "error",
+      title: "Doctor Singup Failed!!",
+      showConfirmButton: false,
+      timer: 1500
+    });
   }
 
 
@@ -74,7 +90,7 @@ const PatientSignUpPage = () => {
       patientRegister({
         data : patientData
       })
-
+     reset()
     }
 
     

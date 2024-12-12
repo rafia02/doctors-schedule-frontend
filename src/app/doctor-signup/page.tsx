@@ -5,7 +5,7 @@ import { EyeIcon, EyeSlashIcon } from "@heroicons/react/16/solid";
 import PhoneInput from "react-phone-input-2";
 import { userSingUp } from "@/service/authService";
 import { useDoctorRegisterMutation } from "@/redux/api/doctorsApi";
-
+import Swal from 'sweetalert2'
 
 // Define form inputs
 interface DoctorSignUpFormInputs {
@@ -25,16 +25,34 @@ interface DoctorSignUpFormInputs {
 
 
 const DoctorSignUpPage = () => {
-  const { register, handleSubmit, formState: { errors }, watch, control } = useForm<DoctorSignUpFormInputs>();
+  const { register, handleSubmit, reset, formState: { errors }, watch, control } = useForm<DoctorSignUpFormInputs>();
   const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
   const [doctorRegister, {data, isSuccess, isError, error}] = useDoctorRegisterMutation()
 
+
   if(isSuccess){
-    console.log('doctor succesful in backend:', data)
+    console.log('doctor succesful in backend:', data.message)
+    // sweetalert tost show message error
+     if(data.success){
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: data.message,
+        showConfirmButton: false,
+        timer: 1500
+      });
+     }
   }
   if(isError){
     console.log('doctor error in backend', error)
+    Swal.fire({
+      position: "top-end",
+      icon: "error",
+      title: "Doctor Singup Failed!!",
+      showConfirmButton: false,
+      timer: 1500
+    });
   }
 
 
@@ -44,7 +62,7 @@ const DoctorSignUpPage = () => {
     // Handle form submission logic here (e.g., API calls)
     const email = data.email
     const password = data.password
-    console.log({data})
+    const doctor = await userSingUp(email, password)
 
     const doctorData = {
       password: data.password,
@@ -55,7 +73,7 @@ const DoctorSignUpPage = () => {
           lastName: data.lastName
          },
         email: data.email,
-        gender: data.gender,
+        gender: data.gender.toLocaleLowerCase(),
         dateOfBirth: data.dateOfBirth,
         phone: data.phoneNumber,
         specialization: data.specialization 
@@ -64,12 +82,13 @@ const DoctorSignUpPage = () => {
 
     console.log({doctorData})
 
-    const doctor = await userSingUp(email, password)
-    // console.log('doctor', doctor)
+    
+    // after authentication firebase then go to data in database
     if(doctor?.email){
        doctorRegister({ data: doctorData })
+      //  console.log('doctor api call successful')
+      reset()
     }
-
     
   }
 
