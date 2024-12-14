@@ -13,7 +13,6 @@ export const userSingUp = async (email:string, password:string) => {
 
     try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        console.log('userCredential', userCredential)
         const user = userCredential.user;
         const userData = {
             uid: user.uid,

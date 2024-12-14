@@ -5,7 +5,7 @@ import Footer from "@/components/shared/footer/Footer";
 import Providerr from "@/components/provider/Provider";
 import ShowNavber from "@/components/clientComponents/showNavber";
 import 'react-phone-input-2/lib/style.css'
-
+import  { Toaster } from 'react-hot-toast';
 
 
 
@@ -43,6 +43,7 @@ export default function RootLayout({
           </div>
           {children}
           <Footer/>
+          <Toaster/>
         </Providerr>
 
       </body>

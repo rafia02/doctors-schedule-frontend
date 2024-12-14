@@ -1,11 +1,15 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/16/solid";
 import PhoneInput from "react-phone-input-2";
-import { userSingUp } from "@/service/authService";
+import { logout, userSingUp } from "@/service/authService";
 import { useDoctorRegisterMutation } from "@/redux/api/doctorsApi";
-import Swal from 'sweetalert2'
+import toast from "react-hot-toast";
+import { useRouter } from 'next/navigation';
+
 
 // Define form inputs
 interface DoctorSignUpFormInputs {
@@ -25,72 +29,61 @@ interface DoctorSignUpFormInputs {
 
 
 const DoctorSignUpPage = () => {
+  const router = useRouter()
+  const [loading, setLoading] = useState(false);
   const { register, handleSubmit, reset, formState: { errors }, watch, control } = useForm<DoctorSignUpFormInputs>();
   const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
-  const [doctorRegister, {data, isSuccess, isError, error}] = useDoctorRegisterMutation()
+  const [doctorRegister, { data, isSuccess, isError, error }] = useDoctorRegisterMutation()
 
 
-  if(isSuccess){
-    console.log('doctor succesful in backend:', data.message)
-    // sweetalert tost show message error
-     if(data.success){
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: data.message,
-        showConfirmButton: false,
-        timer: 1500
-      });
-     }
-  }
-  if(isError){
-    console.log('doctor error in backend', error)
-    Swal.fire({
-      position: "top-end",
-      icon: "error",
-      title: "Doctor Singup Failed!!",
-      showConfirmButton: false,
-      timer: 1500
-    });
-  }
+
+
+  useEffect(() => {
+    if (isSuccess) {
+      // console.log('doctor succesful in backend:', data)
+      toast.success('Sign-up Successfull!!')
+      router.push('/')
+    }
+    if (isError) {
+      // console.log('doctor error in backend', error)
+      toast.error('Sign-up failed. Please try again!!')
+      logout()
+    }
+  }, [isSuccess, isError])
 
 
 
   const onSubmit: SubmitHandler<DoctorSignUpFormInputs> = async (data) => {
-    
-    // Handle form submission logic here (e.g., API calls)
-    const email = data.email
-    const password = data.password
-    const doctor = await userSingUp(email, password)
+    setLoading(true);
+    try {
+      const doctor = await userSingUp(data.email, data.password);
+      // console.log("Firebase signup", doctor);
 
-    const doctorData = {
-      password: data.password,
-      doctor: {
-        title: data.doctorTitle,
-        name : { 
-          firstName: data.firstName,
-          lastName: data.lastName
-         },
-        email: data.email,
-        gender: data.gender.toLocaleLowerCase(),
-        dateOfBirth: data.dateOfBirth,
-        phone: data.phoneNumber,
-        specialization: data.specialization 
+      const doctorData = {
+        password: data.password,
+        doctor: {
+          title: data.doctorTitle,
+          name: { firstName: data.firstName, lastName: data.lastName },
+          email: data.email,
+          gender: data.gender.toLocaleLowerCase(),
+          dateOfBirth: data.dateOfBirth,
+          phone: data.phoneNumber,
+          specialization: data.specialization
+        }
+      };
+
+      if (doctor?.email && doctor?.uid) {
+        await doctorRegister({ data: doctorData });
       }
+      reset();
+    } catch (error) {
+      toast.error('Sign-up failed. Please try again!!');
+    } finally {
+      setLoading(false);
     }
+  };
 
-    console.log({doctorData})
-
-    
-    // after authentication firebase then go to data in database
-    if(doctor?.email){
-       doctorRegister({ data: doctorData })
-      //  console.log('doctor api call successful')
-      reset()
-    }
-    
-  }
 
 
 
@@ -203,28 +196,28 @@ const DoctorSignUpPage = () => {
               </div>
 
 
-           {/* modify gender */}
+              {/* modify gender */}
 
-              <div  className="w-1/2">
-              <label htmlFor="gender" className="block mb-[1px] text-textLight font-semibold">Gender</label>
+              <div className="w-1/2">
+                <label htmlFor="gender" className="block mb-[1px] text-textLight font-semibold">Gender</label>
 
-              <select
-                id="doctor-gender"
-                {...register('gender', { required: 'gender is required' })}
-                className=" block w-full py-2 px-4 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm "
-              >
-                <option value="" disabled hidden >Select a gender</option>
-                {genders.map((gender, index) => (
-                  <option key={index} value={gender}>
-                    {gender}
-                  </option>
-                ))}
-              </select>
+                <select
+                  id="doctor-gender"
+                  {...register('gender', { required: 'gender is required' })}
+                  className=" block w-full py-2 px-4 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm "
+                >
+                  <option value="" disabled hidden >Select a gender</option>
+                  {genders.map((gender, index) => (
+                    <option key={index} value={gender}>
+                      {gender}
+                    </option>
+                  ))}
+                </select>
 
-              {errors.doctorTitle && (
-                <span className="text-red-500 text-sm">{errors.doctorTitle.message}</span>
-              )}
-            </div>
+                {errors.doctorTitle && (
+                  <span className="text-red-500 text-sm">{errors.doctorTitle.message}</span>
+                )}
+              </div>
 
             </div>
 
@@ -282,8 +275,8 @@ const DoctorSignUpPage = () => {
 
 
 
-                        {/* Email */}
-                        <div>
+            {/* Email */}
+            <div>
               <label htmlFor="email" className="block mb-[1px] text-textLight font-semibold">Email</label>
               <input
                 id="email"
@@ -354,7 +347,7 @@ const DoctorSignUpPage = () => {
 
 
 
-            
+
 
             {/* Submit Button */}
             <button
