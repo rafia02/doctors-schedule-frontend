@@ -5,6 +5,8 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid"
 import Link from "next/link";
 import { userSingIn } from "@/service/authService";
+import toast from "react-hot-toast";
+import { useRouter } from 'next/navigation';
 
 
 
@@ -14,9 +16,11 @@ interface LoginFormType {
 }
 
 export default function LoginPage() {
+  const router = useRouter()
   const { register,handleSubmit, reset, formState: { errors } } = useForm<LoginFormType>();
   const [showPassword, setShowPassword] = useState(false)
   const togglePassword = () => setShowPassword(!showPassword);
+
   
 
 
@@ -32,10 +36,12 @@ export default function LoginPage() {
 
     const result = await  userSingIn(email, password)
     if(result?.email){
-
-      
       // if login successful
+      toast.success("Login Successful!!")
       reset()
+      router.push('/')
+    }else{
+      toast.error('Login filed,please try again!!')
     }
   };
 
