@@ -1,15 +1,18 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client"
 
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/16/solid";
 import Link from "next/link";
 import PhoneInput from 'react-phone-input-2'
-import { userSingUp } from "@/service/authService";
+import { logout, userSingUp } from "@/service/authService";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { usePatientRegisterMutation } from "@/redux/api/doctorsApi";
-
+import toast from "react-hot-toast";
+import { useRouter } from 'next/navigation';
 
 // Define form inputs
 interface SignUpFormInputs {
@@ -25,38 +28,37 @@ interface SignUpFormInputs {
 
 
 const PatientSignUpPage = () => {
-  const { register, handleSubmit, formState: { errors }, watch, control } = useForm<SignUpFormInputs>();
+  const router = useRouter()
+  const { register, handleSubmit, reset, formState: { errors }, watch, control } = useForm<SignUpFormInputs>();
   const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
-  const { user, error } = useSelector((state:RootState)=> state.auth)
-
-
+  const { user, error } = useSelector((state:RootState)=> state.auth) 
   const [patientRegister, { data, isSuccess, isError, error:backendError } ] = usePatientRegisterMutation()
 
-  console.log('success:', user)
-  console.log('error:', error)
 
 
+  useEffect(()=> {
+    if(isSuccess){
+      toast.success('Sign-up Successfull!!')
+      router.push('/')
+    }
+    if(isError){
+      toast.error('Sign-up failed. Please try again.')
+      logout()
+    }
+  }, [isSuccess, isError])
 
-  if(isSuccess){
-    console.log('backend user', data)
-  }
+  
 
-  if(isError){
-    console.log('backend error', backendError)
-  }
+  
 
 
 
 
   const onSubmit: SubmitHandler<SignUpFormInputs> = async (data) => {
 
-    // Handle form submission logic here (e.g., API calls)
-    // const name = data.firstName + ' ' + data.lastName
-    const email = data.email
-    const password = data.password
-    const user = await  userSingUp(email, password)
-
+    try{ 
+    const user = await  userSingUp(data.email, data.password)
     const patientData = {
       password : data.password,
       patient: {
@@ -70,16 +72,13 @@ const PatientSignUpPage = () => {
     }
 
     if(user?.email){
-
-      patientRegister({
-        data : patientData
-      })
-
+      patientRegister({ data : patientData })
+     reset()
     }
 
-    
-
-
+  }catch(error){
+    toast.error('Sign-up failed. Please try again.')
+  }
   };
 
 
