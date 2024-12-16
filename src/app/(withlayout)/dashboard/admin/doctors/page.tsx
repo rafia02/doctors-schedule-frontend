@@ -1,6 +1,6 @@
 "use client"
 import { EnvelopeIcon, PhoneIcon, StarIcon, UserIcon } from "@heroicons/react/16/solid";
-import { useState } from "react";
+
 
 
 const page = () => {
@@ -10,20 +10,9 @@ const page = () => {
     { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'Editor', specialty: 'Cardiology', phone: '123-456-7890', rating: 4.8, father: 'abc', mather: 'zyx', brother: 'abdul jamal', sister: 'mitu kabir' },
     { id: 3, name: 'Alice Johnson', email: 'alice@example.com', role: 'Viewer', specialty: 'Cardiology', phone: '123-456-7890', rating: 4.8, father: 'abc', mather: 'zyx', brother: 'abdul jamal', sister: 'mitu kabir' },
     // Add more rows as needed
-  ];
-
-
-  const [doctors] = useState([
-    { id: 1, name: 'Dr. John Doe', specialty: 'Cardiology', phone: '123-456-7890', email: 'johndoe@example.com', rating: 4.8 },
-    { id: 2, name: 'Dr. Jane Smith', specialty: 'Pediatrics', phone: '987-654-3210', email: 'janesmith@example.com', rating: 4.9 },
-    { id: 3, name: 'Dr. Alice Brown', specialty: 'Orthopedics', phone: '456-789-0123', email: 'alicebrown@example.com', rating: 4.7 },
-    // Additional doctors as needed
-  ]);
-
+  ]
 
   return (
-
-
 
 
     <div className="bg-white p-8">

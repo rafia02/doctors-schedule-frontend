@@ -1,4 +1,5 @@
 "use client"
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useGetRoleQuery } from "@/redux/api/roleApi";
 import { RootState } from "@/redux/store";
 import { logout, monitorAuthState } from "@/service/authService";
@@ -20,7 +21,7 @@ const Navber = () => {
   }, [])
 
   const email: any = user?.email
-  const { data: role, isLoading, error } = useGetRoleQuery(email, {
+  const { data: role } = useGetRoleQuery(email, {
     skip: !email,
   });
 

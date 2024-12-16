@@ -7,10 +7,7 @@ import PatientCareServices from "@/components/home/patientCareServices"
 import SearchBar from "@/components/home/searchbar"
 import WhyBetter from "@/components/home/whyBetter"
 import Faq from "@/components/shared/footer/faq"
-import { useGetRoleQuery } from "@/redux/api/roleApi"
-import { RootState } from "@/redux/store"
-import { AuthState } from "@/Types/authTypes"
-import { useSelector } from "react-redux"
+
 
 
 

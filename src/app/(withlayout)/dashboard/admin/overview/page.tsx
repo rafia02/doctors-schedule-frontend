@@ -1,13 +1,12 @@
 "use client";
 import { motion } from "framer-motion";
 import {
-  ChartBarIcon,
   CalendarIcon,
   UserGroupIcon,
   CurrencyDollarIcon,
 } from "@heroicons/react/24/solid";
 import { BellIcon, ShieldCheckIcon } from "@heroicons/react/16/solid";
-import { div } from "framer-motion/client";
+
 
 const DashboardOverView = () => {
   return (

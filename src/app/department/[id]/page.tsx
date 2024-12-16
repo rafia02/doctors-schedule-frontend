@@ -1,4 +1,4 @@
-import { CheckCircleIcon, HeartIcon, InformationCircleIcon } from "@heroicons/react/16/solid"
+
 import Image from "next/image"
 
 
@@ -56,12 +56,12 @@ const DepartmentDetailsPage = () => {
                 </div>
                 <div className="md:w-11/12 text-lg leading-relaxed tracking-wide">
                     <p>Internal Medicine services provide care to patients 18 years and older with a focus on preventative care, chronic illness diagnoses and management, care coordination and referrals, and support to lead healthy lifestyles.
-                        Our approach is to encourage trust and open communication to provide comprehensive care appropriate to each patient’s needs and concerns.
+                        Our approach is to encourage trust and open communication to provide comprehensive care appropriate to each patient needs and concerns.
                         <br /> <br />
-                        Whether it's diabetes, high blood pressure, or heart health, our highly skilled providers and friendly care team have the expertise to guide you towards optimal well-being.
+                        Whether it is diabetes, high blood pressure, or heart health, our highly skilled providers and friendly care team have the expertise to guide you towards optimal well-being.
                         Join us at the Charles B. Wang Community Health Center to start your journey to better care today at one of our internal medicine locations in Flushing, Queens or Lower Manhattan.
                         <br /> <br />
-                        Whether it's diabetes, high blood pressure, or heart health, our highly skilled providers and friendly care team have the expertise to guide you towards optimal well-being. Join us at the Charles B. Wang Community Health Center to start your journey to better care today at one of our internal medicine locations in Flushing, Queens or Lower Manhattan.</p>
+                        Whether it is diabetes, high blood pressure, or heart health, our highly skilled providers and friendly care team have the expertise to guide you towards optimal well-being. Join us at the Charles B. Wang Community Health Center to start your journey to better care today at one of our internal medicine locations in Flushing, Queens or Lower Manhattan.</p>
                 </div>
             </div>
 
@@ -78,8 +78,8 @@ const DepartmentDetailsPage = () => {
                         <Image className="w-full h-auto" src="https://img.freepik.com/premium-photo/male-medicine-doctor-holding-red-heart-putting-stethoscope-head-close-it-closeup-medical-help-cardiology-care-health-prophylaxis-prevention-insurance-surgery-resuscitation-concept_151013-14369.jpg?w=900" height={500} width={500} alt=""></Image>
                     </div>
                     <p className="text-lg leading-relaxed">
-                        Internal Medicine services provide care to patients 18 years and older with a focus on preventative care, chronic illness diagnoses and management, care coordination and referrals, and support to lead healthy lifestyles. Our approach is to encourage trust and open communication to provide comprehensive care appropriate to each patient’s needs and concerns.
-                        Whether it's diabetes, high blood pressure, or heart health, our highly skilled providers and friendly care team have the expertise to guide you towards optimal well-being. Join us at the Charles B. Wang Community Health Center to start your journey to better care today at one of our internal medicine locations in Flushing, Queens or Lower Manhattan.
+                        Internal Medicine services provide care to patients 18 years and older with a focus on preventative care, chronic illness diagnoses and management, care coordination and referrals, and support to lead healthy lifestyles. Our approach is to encourage trust and open communication to provide comprehensive care appropriate to each patient needs and concerns.
+                        Whether it is diabetes, high blood pressure, or heart health, our highly skilled providers and friendly care team have the expertise to guide you towards optimal well-being. Join us at the Charles B. Wang Community Health Center to start your journey to better care today at one of our internal medicine locations in Flushing, Queens or Lower Manhattan.
                     </p>
                 </div>
 
@@ -151,7 +151,7 @@ const DepartmentDetailsPage = () => {
                 <div className="leading-relaxed py-24">
                     <h2 className="text-3xl md:text-4xl font-semibold mb-5">Benefits of Gynecology Treatment</h2>
                     <p className="text-lg">
-                        Gynecology treatments ensure women's reproductive health through early detection of issues, management of chronic conditions like PCOS and fibroids, and personalized care for all life stages. Regular check-ups prevent serious diseases, enhance quality of life, and address menstrual, fertility, and menopause concerns for overall well-being.
+                        Gynecology treatments ensure women reproductive health through early detection of issues, management of chronic conditions like PCOS and fibroids, and personalized care for all life stages. Regular check-ups prevent serious diseases, enhance quality of life, and address menstrual, fertility, and menopause concerns for overall well-being.
                     </p>
                 </div>
 
