@@ -10,7 +10,7 @@ import twitter from '../../../app/image/social/twitter-logo.png'
 
 const Footer = () => {
   return (
-    <footer className="bg-secondery text-[#000000] pt-20 mt-24 ">
+    <footer className="bg-secondery text-[#000000] pt-20 ">
     <div className="container mx-auto grid grid-cols-1 md:grid-cols-5 gap-8 px-6">
       {/* About Us Section */}
       <div className='col-span-2'>

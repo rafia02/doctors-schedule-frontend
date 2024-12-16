@@ -58,7 +58,7 @@ const Faq = () => {
 
 
     return (
-        <div className="w-4/5 shadow mx-auto p-6">
+        <div className="w-4/5 shadow mx-auto p-6 mb-20">
             <div className='  '>
                 {/* <div className='w-full '> */}
                 {/* <Image className='w-full ' src="https://img.freepik.com/premium-photo/group-happy-doctors-hospital-corridor-portrait_484651-9332.jpg?w=900" height={800} width={600} alt=''></Image> */}

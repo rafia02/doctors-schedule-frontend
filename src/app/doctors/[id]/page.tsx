@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Bars3Icon } from "@heroicons/react/16/solid";
+import { ArrowLongRightIcon, Bars3Icon, StarIcon } from "@heroicons/react/16/solid";
 import MultiRangeSlider from "multi-range-slider-react";
 
 
@@ -52,7 +52,7 @@ const FindCatagoryDoctorPage = () => {
       image: "https://via.placeholder.com/150",
       department: "Cardiology",
       specialised: "MBBS, MD (Cardiology), FCPS (Internal Medicine)",
-      hospitalName: "Dhaka Medical Center",
+      hospitalName: "Shaheed Suhrawardy Medical College Hospital",
       location: "Dhaka, Bangladesh",
       consultationFee: 500,
       yearsOfExperience: 15,
@@ -168,12 +168,12 @@ const FindCatagoryDoctorPage = () => {
       onlineNow: true,
     },
   ];
-  
+
 
 
 
   return (
-    <div className="bg-[#f9f9fc] text-textDark">
+    <div className="bg-[#f9f9fc] text-textDark pb-16">
       {/* Hero Section */}
       <div>
         <div className="relative h-[40vh] md:h-[250px] flex items-center">
@@ -375,45 +375,126 @@ const FindCatagoryDoctorPage = () => {
           <h2 className="text-xl font-bold mb-4">Available Doctors</h2>
 
 
-          <div className="grid grid-cols-1  gap-6">
-  {doctors.map((doctor, index) => (
-    <div
-      key={index}
-      className="bg-white rounded-xl shadow-md hover:shadow-lg transition duration-300 ease-in-out transform"
-    >
-      <div className="flex flex-col md:flex-row">
-        <div>
-          <img
-            src={doctor.image}
-            alt={doctor.name}
-            className="w-full md:w-32 h-auto object-cover bg-primary"
-          />
-        </div>
+          {/* <div className="grid grid-cols-1  gap-6">
+            {doctors.map((doctor, index) => (
+              <div
+                key={index}
+                className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition duration-300 ease-in-out transform"
+              >
+                <div className="flex flex-col md:flex-row gap-4">
+                  <div className="w-10/12 border">
 
-        <div className="p-4 flex-1">
-          <h2 className="text-xl font-semibold text-gray-800">{doctor.name}</h2>
-          <p className="text-sm text-gray-600">{doctor.specialised}</p>
-          <p className="text-sm text-gray-500">{doctor.department}</p>
-          <p className="text-sm text-gray-400">{doctor.location}</p>
-          <p className="text-sm text-gray-400">{doctor.hospitalName}</p>
-          <div className="flex flex-wrap items-center gap-4 mt-3">
-            <span className="font-semibold text-lg text-primary">{doctor.consultationFee} BDT</span>
-            <span className="text-sm text-gray-500">| {doctor.yearsOfExperience} years experience</span>
-            <span className="text-sm text-gray-500">| Rating: {doctor.rating.toFixed(1)}</span>
+                    <div className="w-full flex gap-4">
+                      <div className="w-8/12 flex gap-4">
+                        <div>
+                          <img
+                            src={doctor.image}
+                            alt={doctor.name}
+                            className="w-full md:w-28 h-auto object-cover bg-primary"
+                          />
+                        </div>
+
+                        <div className="border w-full">
+                          <h2 className="text-xl font-semibold text-gray-800">{doctor.name}</h2>
+                          <p className="text-sm text-gray-600">{doctor.specialised}</p>
+                          <p className="text-sm text-gray-500">{doctor.department}</p>
+                          <p className="text-sm text-gray-400">{doctor.location}</p>
+                          <p className="text-sm text-gray-400">{doctor.hospitalName}</p>
+                        </div>
+                      </div>
+
+                      <div className="w-4/12">
+                        <p>working in</p>
+                        <p>{doctor.hospitalName}</p>
+                        <p>total experience</p>
+                        <p>{doctor.yearsOfExperience}</p>
+                        <p>rating</p>
+                        <p>{doctor.rating}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="w-2/12 border">
+                  <h1 className="text-2xl font-bold tracking-wide">{doctor.consultationFee} BDT</h1>
+                    <button
+                      className="w-full py-2 bg-primary text-white rounded-md hover:bg-primary-dark transition"
+                    >
+                      Book Appointment
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div> */}
+
+
+          <div className="grid grid-cols-1 gap-6">
+            {doctors.map((doctor, index) => (
+              <div
+                key={index}
+                className="bg-white rounded shadow hover:shadow-md transition duration-300 ease-in-out transform"
+              >
+                <div className="flex flex-col md:flex-row md:gap-4">
+                  {/* Left Section */}
+                  <div className="md:w-9/12 p-4 md:p-5">
+                    <div className="w-full flex flex-col md:flex-row gap-3 md:gap-4">
+                      {/* Doctor Info */}
+                      <div className="md:w-8/12 flex flex-col md:flex-row gap-4">
+                        {/* Doctor Image */}
+                        <div>
+                          <img
+                            src="https://cdn.prod.website-files.com/65525600ad11f5d8bc8c3450/65a1616c4516979dd42a8af9_Qiyang-Zhang.png"
+                            alt={doctor.name}
+                            className="w-28 md:w-40 md:h-32 object-cover rounded-sm bg-primary"
+                          />
+                        </div>
+
+                        {/* Doctor Details */}
+                        <div className="w-full">
+                          <h2 className="text-lg font-semibold text-gray-800">
+                            {doctor.name}
+                          </h2>
+                          <p className="text-[13px] text-gray-600">{doctor.specialised}</p>
+                          <p className="text-[13px] text-gray-400 mt-[2px] mb-1">{doctor.location}</p>
+                          <button className="text-xs border-primary py-[2px] px-2 rounded-full border font-semibold text-primary">{doctor.department}</button>
+                          {/* <p className="text-[13px] text-gray-400">{doctor.hospitalName}</p> */}
+                        </div>
+                      </div>
+
+                      {/* Additional Info */}
+                      <div className="md:w-4/12 text-[13px] text-gray-600">
+                        <p className="font-medium text-gray-400">Working in :</p>
+                        <p className="font-semibold">{doctor.hospitalName}</p>
+                        <div className="flex items-center gap-1 mt-1">
+                          <p className="font-medium text-gray-400">Total Experience :</p>
+                          <p className="font-semibold">{doctor.yearsOfExperience} years</p>
+                        </div>
+                        <div className=" flex items-center gap-1 mt-1">
+                          <StarIcon className="h-4 w-4 text-yellow-400"></StarIcon>
+                          <p className="text-yellow-400">{doctor.rating}</p>
+                          <p className="ml-2 font-semibold">(150 review)</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Right Section */}
+                  <div className="md:w-3/12 p-4 md:p-5 flex flex-col justify-center bg-secondery">
+                    <h1 className="text-2xl font-bold mb-3 text-primary">
+                      $ {doctor.consultationFee}
+                    </h1>
+                    <div>
+                      <button className="flex items-center gap-1 text-xs hover:scale-105 uppercase px-3 py-2 bg-btnClr hover:bg-btnHover duration-300 text-white tracking-wider rounded hover:bg-primary-dark transition">
+                        <span>Appointment</span>
+                        <ArrowLongRightIcon className="w-5 hidden hover:block"></ArrowLongRightIcon>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
-        </div>
 
-        <div className="mt-4 md:mt-0 md:ml-4">
-          <button
-            className="w-full py-2 bg-primary text-white rounded-md hover:bg-primary-dark transition"
-          >
-            Book Appointment
-          </button>
-        </div>
-      </div>
-    </div>
-  ))}
-</div>
 
 
 
