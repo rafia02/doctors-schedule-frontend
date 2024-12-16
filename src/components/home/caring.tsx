@@ -43,8 +43,8 @@ const Caring = () => {
                 <p className="text-sm">Consult with top specialists</p>
               </div>
             </div>
-            <div className=" hidden md:block absolute right-24 top-2/3 overflow-hidden">
-              <Image className="rounded border-8 border-white w-full h-full " src="https://img.freepik.com/free-photo/patient-consulting-doctor_1170-2109.jpg?t=st=1731067049~exp=1731070649~hmac=5907e3860d67311c09981b2b53f16133ad223bc6a65832730966fa9d9362d637&w=900" height={250} width={450} alt=""></Image>
+            <div className=" hidden md:block absolute right-20 top-2/4 overflow-hidden">
+              <Image className="rounded border-8 border-white w-[70%] h-full " src="https://img.freepik.com/free-photo/patient-consulting-doctor_1170-2109.jpg?t=st=1731067049~exp=1731070649~hmac=5907e3860d67311c09981b2b53f16133ad223bc6a65832730966fa9d9362d637&w=900" height={250} width={450} alt=""></Image>
               <div className="absolute inset-0 bg-primary opacity-5 rounded-lg"></div>
             </div>
           </div>

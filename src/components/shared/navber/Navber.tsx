@@ -115,10 +115,10 @@ const Navber = () => {
       {isDrawerOpen && (
         <div className="fixed inset-0 z-40 bg-black bg-opacity-50">
           <div
-            className="fixed top-0 right-0 w-64 h-full bg-white shadow-lg p-4"
+            className="fixed top-20 right-0 w-64 h-full bg-white shadow-lg p-4"
             onClick={() => setIsDrawerOpen(false)}
           >
-            <button className="absolute top-4 right-4">
+            <button className="absolute top-0 right-4">
               <XMarkIcon className="w-7 h-7" />
             </button>
             <nav>
