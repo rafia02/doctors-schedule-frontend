@@ -5,10 +5,11 @@ import { RootState } from "@/redux/store";
 import { logout, monitorAuthState } from "@/service/authService";
 import { AuthState } from "@/Types/authTypes";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/16/solid";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-
+import logo from "../../../app/image/logo.png"
 
 
 const Navber = () => {
@@ -43,7 +44,7 @@ const Navber = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="text-2xl font-bold">
-              Logo
+              <Image src={logo} className="h-10 w-56" height={10} width={200} alt=""></Image>
             </Link>
           </div>
 

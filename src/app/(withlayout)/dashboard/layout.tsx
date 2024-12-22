@@ -25,7 +25,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   const { data: role} = useGetRoleQuery(email, {
     skip: !email,
-  });
+  })
 
   // const { data: role, isLoading, error } = useGetRoleQuery(email, {
   //   skip: !email,
@@ -54,7 +54,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <div
 
         className={`fixed lg:static min-h-screen inset-y-0 left-0 transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-          } lg:translate-x-0 w-[359px]  bg-[#3d5182] text-white p-5 transition-transform duration-200 ease-in-out z-10 shadow-lg`}
+          } lg:translate-x-0 w-[359px]  bg-[#465a8d] text-white p-5 transition-transform duration-200 ease-in-out z-10 shadow-lg`}
       // className={` transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"
       //   } lg:translate-x-0 md:w-96 h-full bg-[#435b98]  text-white p-5 transition-transform duration-200 ease-in-out z-10 shadow-lg`}
       >

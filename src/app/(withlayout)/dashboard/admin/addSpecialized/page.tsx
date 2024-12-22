@@ -2,6 +2,7 @@
 
 import { useForm, useFieldArray, SubmitHandler } from "react-hook-form";
 import { PlusCircleIcon, TrashIcon } from "@heroicons/react/24/outline";
+import toast from "react-hot-toast";
 
 interface Service {
   service: string;
@@ -22,6 +23,7 @@ const AddSpecializedForm = () => {
     register,
     control,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FormData>({
     defaultValues: {
@@ -88,6 +90,33 @@ const AddSpecializedForm = () => {
       };
 
       console.log("Form Submitted with Hosted Images:", formDataWithImages);
+      fetch("https://doctors-schedule-backend.vercel.app/api/v1/specialize/create", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(formDataWithImages)
+      })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data)
+
+          toast.success("Successfully add specialized")
+          reset({
+            title: "",
+            subDescription: "",
+            longDescription: "",
+            mainImage: null,
+            iconImage: null,
+            benifit: "",
+            services: [{ service: "" }],
+          });
+
+        })
+        .catch(e => {
+          console.error(e)
+          toast.error("Error uploading data.");
+        })
     } catch (error) {
       console.error("Error uploading images:", error);
     }
@@ -118,7 +147,7 @@ const AddSpecializedForm = () => {
             )}
           </div>
 
-          <div>
+          {/* <div>
             <label
               htmlFor="subDescription"
               className="block text-sm font-semibold"
@@ -139,9 +168,35 @@ const AddSpecializedForm = () => {
                 {errors.subDescription.message}
               </p>
             )}
-          </div>
+          </div> */}
+
 
           <div>
+            <label htmlFor="subDescription" className="block text-sm font-semibold">
+              Sub Description
+            </label>
+            <textarea
+              id="subDescription"
+              {...register("subDescription", {
+                required: "Sub Description is required",
+                minLength: {
+                  value: 450,
+                  message: "Sub Description must be at least 450 characters long",
+                },
+              })}
+              className="w-full bg-[#f1f5ff] border mt-[2px] border-btnClr rounded px-4 py-2 focus:outline-none"
+              placeholder="Enter sub description"
+              rows={4}
+            />
+            {errors.subDescription && (
+              <p className="text-red-500 text-sm mt-[2px]">
+                {errors.subDescription.message}
+              </p>
+            )}
+          </div>
+
+
+          {/* <div>
             <label
               htmlFor="longDescription"
               className="block text-sm font-semibold"
@@ -162,14 +217,40 @@ const AddSpecializedForm = () => {
                 {errors.longDescription.message}
               </p>
             )}
+          </div> */}
+
+
+          <div>
+            <label
+              htmlFor="longDescription"
+              className="block text-sm font-semibold"
+            >
+              Long Description
+            </label>
+            <textarea
+              id="longDescription"
+              {...register("longDescription", {
+                required: "Long Description is required",
+                minLength: {
+                  value: 800,
+                  message: "Long Description must be at least 800 characters",
+                },
+              })}
+              className="w-full bg-[#f1f5ff] border rounded px-4 py-2 mt-[2px] border-btnClr focus:outline-none"
+              rows={8}
+              placeholder="Enter long description"
+            />
+            {errors.longDescription && (
+              <p className="text-red-500 text-sm mt-[2px]">
+                {errors.longDescription.message}
+              </p>
+            )}
           </div>
 
 
 
 
-
-
-{/* 
+          {/* 
           <div className="flex flex-col md:flex-row gap-2">
             <div className="w-full">
               <label className="block mb-[2px] text-sm font-semibold">
@@ -303,7 +384,7 @@ const AddSpecializedForm = () => {
             </div>
           </div>
 
-          <div>
+          {/* <div>
             <label htmlFor="benifit" className="block text-sm font-semibold">
               Benefit
             </label>
@@ -319,7 +400,34 @@ const AddSpecializedForm = () => {
                 {errors.benifit.message}
               </p>
             )}
+          </div> */}
+
+          <div>
+            <label htmlFor="benefit" className="block text-sm font-semibold">
+              Benefit
+            </label>
+            <textarea
+              id="benifit"
+              {...register("benifit", {
+                required: "Benefit is required",
+                minLength: {
+                  value: 200,
+                  message: "Benefit must be at least 200 characters long",
+                },
+              })}
+              className="w-full bg-[#f1f5ff] border rounded px-4 py-2 mt-[2px] border-btnClr focus:outline-none"
+              rows={4}
+              placeholder="Enter benefits"
+            />
+            {errors.benifit && (
+              <p className="text-red-500 text-sm mt-[2px]">
+                {errors.benifit.message}
+              </p>
+            )}
           </div>
+
+
+
 
           <button
             type="submit"
