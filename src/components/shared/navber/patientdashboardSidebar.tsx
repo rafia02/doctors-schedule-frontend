@@ -2,15 +2,14 @@
 import { CalendarIcon, ChatBubbleBottomCenterTextIcon, CogIcon, SquaresPlusIcon, UsersIcon } from '@heroicons/react/16/solid';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React, { useState } from 'react'
 
 const PatientDashboardSidebar = () => {
-  const [isDepartmentOpen, setIsDepartmentOpen] = useState(false)
+  // const [isDepartmentOpen, setIsDepartmentOpen] = useState(false)
   const router = usePathname();
   const isActive = (path: string) => router === path;
 
   const linkClasses = "flex items-center p-2 rounded transition duration-150";
-  const subMenuClasses = "ml-8 px-3 py-2 rounded text-sm";
+  // const subMenuClasses = "ml-8 px-3 py-2 rounded text-sm";
   return (
     <div className="h-full">
     <h2 className="text-2xl font-semibold p-2 mb-6">Doctors Portal</h2>

@@ -1,7 +1,6 @@
 'use client';
 
-import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/16/solid';
-import Image from 'next/image';
+import { ChevronDownIcon } from '@heroicons/react/16/solid';
 import React, { useState } from 'react';
 
 type FAQItem = {

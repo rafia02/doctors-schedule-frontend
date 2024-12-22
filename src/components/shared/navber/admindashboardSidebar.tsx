@@ -1,6 +1,5 @@
 "use client"
-import { AcademicCapIcon, CalendarIcon, ChartBarIcon, ChatBubbleBottomCenterIcon, ChatBubbleBottomCenterTextIcon, ChevronDownIcon, ChevronUpIcon, CogIcon, DocumentTextIcon, EnvelopeIcon, HomeIcon, InboxIcon, SquaresPlusIcon, UserGroupIcon, UserIcon, UsersIcon } from "@heroicons/react/16/solid"
-import { ArrowLeftIcon } from "@heroicons/react/24/solid";
+import { AcademicCapIcon, CalendarIcon, ChartBarIcon, ChatBubbleBottomCenterTextIcon, ChevronDownIcon, ChevronUpIcon, CogIcon, DocumentTextIcon, SquaresPlusIcon,  UserIcon, UsersIcon } from "@heroicons/react/16/solid"
 import Link from "next/link"
 import { usePathname } from "next/navigation";
 import { useState } from "react";

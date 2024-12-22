@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const doctorsApi = createApi({
     reducerPath: 'doctorsApi',
-    baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:5000'}),
+    baseQuery: fetchBaseQuery({baseUrl: 'https://doctors-schedule-backend.vercel.app'}),
     endpoints: (builder) => ({
         patientRegister : builder.mutation({
             query : (data) => {

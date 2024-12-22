@@ -1,5 +1,5 @@
 "use client"
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -25,7 +25,7 @@ const useRoleApi = (email: string | null): UseRoleApiResult => {
 
 
 
-  const BASE_URL = "http://localhost:5000/api/v1/";
+  const BASE_URL = "https://doctors-schedule-backend.vercel.app/api/v1/";
 
   useEffect(() => {
     if (!email) {
@@ -63,7 +63,7 @@ export default useRoleApi;
 // import { useState, useEffect } from "react";
 // import axios from "axios";
 
-// const BASE_URL = "http://localhost:5000/api/v1/";
+// const BASE_URL = "https://doctors-schedule-backend.vercel.app/api/v1/";
 
 // // Define types for the API response and hook states
 // interface RoleApiResponse {

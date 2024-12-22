@@ -1,8 +1,7 @@
 "use client"
 import AdminDashboardSidebar from "@/components/shared/navber/admindashboardSidebar"
 import { useEffect, useState } from "react"
-import { Bars3Icon, CalendarIcon, CogIcon, HomeIcon, UserGroupIcon, XMarkIcon } from "@heroicons/react/16/solid"
-import Link from "next/link"
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/16/solid"
 import { AuthState } from "@/Types/authTypes"
 import { useSelector } from "react-redux"
 import { RootState } from "@/redux/store"
@@ -13,7 +12,7 @@ import DoctorDashboardSidebar from "@/components/shared/navber/doctordashboardSi
 
 
 
-const layout = ({ children }: { children: React.ReactNode }) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
@@ -21,11 +20,16 @@ const layout = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     monitorAuthState()
   }, [])
-  const email: any = user?.email
+  // const email: any = user?.email
+  const email: string | undefined = user?.email
 
-  const { data: role, isLoading, error } = useGetRoleQuery(email, {
+  const { data: role} = useGetRoleQuery(email, {
     skip: !email,
-  });
+  })
+
+  // const { data: role, isLoading, error } = useGetRoleQuery(email, {
+  //   skip: !email,
+  // });
 
 
   console.log("roleeeeeeeee", role)
@@ -50,7 +54,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
       <div
 
         className={`fixed lg:static min-h-screen inset-y-0 left-0 transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-          } lg:translate-x-0 w-[359px]  bg-[#3d5182] text-white p-5 transition-transform duration-200 ease-in-out z-10 shadow-lg`}
+          } lg:translate-x-0 w-[359px]  bg-[#465a8d] text-white p-5 transition-transform duration-200 ease-in-out z-10 shadow-lg`}
       // className={` transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"
       //   } lg:translate-x-0 md:w-96 h-full bg-[#435b98]  text-white p-5 transition-transform duration-200 ease-in-out z-10 shadow-lg`}
       >
@@ -143,4 +147,4 @@ const layout = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-export default layout
+export default Layout

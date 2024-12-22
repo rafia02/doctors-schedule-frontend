@@ -1,6 +1,4 @@
 import Image from "next/image"
-import img1 from "../../app/image/home/Background (1).png"
-import img2 from "../../app/image/home/Background (3).png"
 
 
 

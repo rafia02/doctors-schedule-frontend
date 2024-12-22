@@ -1,13 +1,15 @@
 "use client"
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useGetRoleQuery } from "@/redux/api/roleApi";
 import { RootState } from "@/redux/store";
 import { logout, monitorAuthState } from "@/service/authService";
 import { AuthState } from "@/Types/authTypes";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/16/solid";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-
+import logo from "../../../app/image/logo.png"
 
 
 const Navber = () => {
@@ -20,7 +22,7 @@ const Navber = () => {
   }, [])
 
   const email: any = user?.email
-  const { data: role, isLoading, error } = useGetRoleQuery(email, {
+  const { data: role } = useGetRoleQuery(email, {
     skip: !email,
   });
 
@@ -42,7 +44,7 @@ const Navber = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="text-2xl font-bold">
-              Logo
+              <Image src={logo} className="h-10 w-56" height={10} width={200} alt=""></Image>
             </Link>
           </div>
 
@@ -118,7 +120,7 @@ const Navber = () => {
             className="fixed top-20 right-0 w-64 h-full bg-white shadow-lg p-4"
             onClick={() => setIsDrawerOpen(false)}
           >
-            <button className="absolute top-0 right-4">
+            <button className="absolute top-2 right-4">
               <XMarkIcon className="w-7 h-7" />
             </button>
             <nav>

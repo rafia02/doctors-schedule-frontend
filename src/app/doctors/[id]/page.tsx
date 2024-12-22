@@ -1,5 +1,7 @@
-"use client"
 
+
+"use client"
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import Image from "next/image";
 import { ArrowLongRightIcon, Bars3Icon, StarIcon } from "@heroicons/react/16/solid";
@@ -442,11 +444,7 @@ const FindCatagoryDoctorPage = () => {
                       <div className="md:w-8/12 flex flex-col md:flex-row gap-4">
                         {/* Doctor Image */}
                         <div>
-                          <img
-                            src="https://cdn.prod.website-files.com/65525600ad11f5d8bc8c3450/65a1616c4516979dd42a8af9_Qiyang-Zhang.png"
-                            alt={doctor.name}
-                            className="w-28 md:w-40 md:h-32 object-cover rounded-sm bg-primary"
-                          />
+                          <Image className="w-28 md:w-40 md:h-32 object-cover rounded-sm bg-primary" src="https://cdn.prod.website-files.com/65525600ad11f5d8bc8c3450/65a1616c4516979dd42a8af9_Qiyang-Zhang.png" height={100} width={100} alt=""></Image>
                         </div>
 
                         {/* Doctor Details */}
