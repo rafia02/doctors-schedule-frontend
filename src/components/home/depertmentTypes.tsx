@@ -1,9 +1,31 @@
+"use client"
+import { fetchSpecializations } from '@/lib/specializationApi'
+import { Department } from '@/Types/specalizationType'
+import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import LoadingSpinner from '../shared/loadingSpinner'
+
+
+interface Specialization {
+  id: number;
+  name: string;
+}
 
 const DepartmentTypes = () => {
   const deparments = [1, 2, 3, 4, 5, 6]
+
+
+  const { data, isLoading, error } = useQuery<Department[]>({
+    queryKey: ['departments'],
+    queryFn: fetchSpecializations,
+  });
+
+  if (isLoading) return <LoadingSpinner></LoadingSpinner>;
+  if (error) return <p className="text-center text-red-500">Error Something. Please try again.</p>;
+
+  console.log("dataaaaaaaaaaaaaaaaaaa", data)
   return (
     <div className='mt-28 px-5 md:px-8'>
       <div className='flex flex-col md:flex-row text-textDark gap-5 justify-between md:items-center'>
@@ -23,15 +45,15 @@ const DepartmentTypes = () => {
 
 
         {
-          deparments.map((department, i) => <Link key={i} href='/department/1' className='text-textLight p-4 rounded shadow hover:bg-primary hover:text-white duration-500'>
+          data?.map((department, i) => <Link key={i} href='/department/1' className='text-textLight p-4 rounded shadow hover:bg-primary hover:text-white duration-500'>
             <div>
-              <Image className='w-16 h-16 p-3 rounded-lg bg-secondery' height={50} width={50} src="https://cdn.prod.website-files.com/63b3f9e2d9818851cf576a6f/63b514edd3a5520923d686a6_Cardiology.svg" alt=''></Image>
+              {/* <Image className='w-16 h-16 p-3 rounded-lg bg-secondery' height={50} width={50} src={department?.iconImage} alt=''></Image> */}
             </div>
             <div>
-              <h5 className='my-4 text-xl font-semibold'>Cardiology</h5>
-              <p className='tracking-wide leading-6 text-[16px]'>Offering specialized heart care, including routine check-ups, preventive care, focused on cardiovascular health.</p>
+              <h5 className='my-4 text-xl font-semibold'>{department?.title}</h5>
+              <p className='tracking-wide leading-6 text-[16px]'>{department.subDescription.slice(0, 150)}...</p>
             </div>
-          </Link> )
+          </Link>)
         }
 
       </div>
