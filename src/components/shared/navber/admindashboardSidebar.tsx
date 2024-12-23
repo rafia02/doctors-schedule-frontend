@@ -41,7 +41,7 @@ const AdminDashboardSidebar = () => {
 
           <Link
             href="/dashboard/admin/doctors"
-            className={`${linkClasses} ${isActive("/dashboard/doctors") ? "bg-[#4967b3]" : "hover:bg-[#4967b3]"
+            className={`${linkClasses} ${isActive("/dashboard/admin/doctors") ? "bg-[#4967b3]" : "hover:bg-[#4967b3]"
               }`}
           >
             <UsersIcon className="w-6 h-6 mr-3" />
@@ -123,8 +123,8 @@ const AdminDashboardSidebar = () => {
                   Add Specialized
                 </Link>
                 <Link
-                  href="/dashboard/admin/showSpecialized"
-                  className={`${subMenuClasses} ${isActive("/dashboard/admin/showSpecialized")
+                  href="/dashboard/admin/allSpecialized"
+                  className={`${subMenuClasses} ${isActive("/dashboard/admin/allSpecialized")
                     ? "bg-[#4967b3]"
                     : "hover:bg-[#4967b3]"
                     }`}

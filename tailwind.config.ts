@@ -8,6 +8,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      animation: {
+        'spin-smooth': 'spin 2s linear infinite',  // Smooth outer circle rotation
+        'pulse': 'pulse 2s ease-in-out infinite',  // Inner pulse effect
+      },
       colors: {
         // #415da1
         // #415DA1
