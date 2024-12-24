@@ -8,13 +8,7 @@ import React from 'react'
 import LoadingSpinner from '../shared/loadingSpinner'
 
 
-interface Specialization {
-  id: number;
-  name: string;
-}
-
 const DepartmentTypes = () => {
-  const deparments = [1, 2, 3, 4, 5, 6]
 
 
   const { data, isLoading, error } = useQuery<Department[]>({

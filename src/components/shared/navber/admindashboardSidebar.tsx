@@ -1,5 +1,5 @@
 "use client"
-import { AcademicCapIcon, CalendarIcon, ChartBarIcon, ChatBubbleBottomCenterTextIcon, ChevronDownIcon, ChevronUpIcon, CogIcon, DocumentTextIcon, SquaresPlusIcon,  UserIcon, UsersIcon } from "@heroicons/react/16/solid"
+import { AcademicCapIcon, CalendarIcon, ChartBarIcon, ChatBubbleBottomCenterTextIcon, ChevronDownIcon, ChevronUpIcon, CogIcon, DocumentTextIcon, SquaresPlusIcon, UserIcon, UsersIcon } from "@heroicons/react/16/solid"
 import Link from "next/link"
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -17,7 +17,9 @@ const AdminDashboardSidebar = () => {
 
 
     <div className="h-full">
-      <h2 className="text-2xl font-semibold p-2 mb-6">Doctors Portal</h2>
+      <Link href="/">
+        <h2 className="text-2xl font-semibold p-2 mb-6">Doctors Schedule</h2>
+      </Link>
 
       {/* Main Navigation Links */}
       <div>

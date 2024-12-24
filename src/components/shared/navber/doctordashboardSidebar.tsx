@@ -8,7 +8,7 @@ const DoctorDashboardSidebar = () => {
   const router = usePathname();
   const isActive = (path: string) => router === path;
   const linkClasses = "flex items-center p-2 rounded transition duration-150";
-  const subMenuClasses = "ml-8 px-3 py-2 rounded text-sm";
+  // const subMenuClasses = "ml-8 px-3 py-2 rounded text-sm";
 
 
   return (

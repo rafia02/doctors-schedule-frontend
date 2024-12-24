@@ -1,5 +1,5 @@
 export interface Department{
-    private _id(_id: any): void;
+    _id: string
     title: string;
     subDescription: string;
     longDescription: string;

@@ -1,10 +1,11 @@
 "use client"
 import React from 'react'
-import { EnvelopeIcon, PhoneIcon, StarIcon, TrashIcon, UserIcon } from "@heroicons/react/16/solid";
+import { TrashIcon } from "@heroicons/react/16/solid";
 import Image from 'next/image';
-import { QueryClient, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Department } from '@/Types/specalizationType';
 import { fetchSpecializations, deleteSpecialization } from '@/lib/specializationApi';
+import LoadingSpinner from '@/components/shared/loadingSpinner';
 
 const AllSpecialized = () => {
 
@@ -25,7 +26,11 @@ const AllSpecialized = () => {
     },
   });
 
-  const handleDelete = (id: any) => {
+
+  if (isLoading) return <LoadingSpinner></LoadingSpinner>;
+  if (error) return <p className="text-center text-red-500">Error Something. Please try again.</p>;
+
+  const handleDelete = (id: string) => {
     // Trigger delete mutation
     mutation.mutate(id);
   };
@@ -57,7 +62,7 @@ const AllSpecialized = () => {
                       <td className="whitespace-nowrap px-7 py-6">{i + 1}</td>
 
                       <td className="whitespace-nowrap px-8 py-6">
-                        <Image src="https://res.cloudinary.com/doctorsshedule/image/upload/v1734892754/kdob499vtqkd1k6hmkhd.png" height={50} width={30} alt=''></Image>
+                        <Image src={item?.iconImage} height={50} width={30} alt=''></Image>
                       </td>
                       <td className="whitespace-nowrap px-8 py-6">{item?.title}</td>
                       <td className="whitespace-nowrap px-8 py-6">{item?.subDescription.slice(0, 20)}..</td>
