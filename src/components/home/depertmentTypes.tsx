@@ -47,7 +47,7 @@ const DepartmentTypes = () => {
         {
           data?.map((department, i) => <Link key={i} href='/department/1' className='text-textLight p-4 rounded shadow hover:bg-primary hover:text-white duration-500'>
             <div>
-              {/* <Image className='w-16 h-16 p-3 rounded-lg bg-secondery' height={50} width={50} src={department?.iconImage} alt=''></Image> */}
+              <Image className='w-16 h-16 p-3 rounded-lg bg-[#e8eefb]' height={50} width={50} src={department?.iconImage} alt=''></Image>
             </div>
             <div>
               <h5 className='my-4 text-xl font-semibold'>{department?.title}</h5>
