@@ -1,4 +1,5 @@
 export interface Department{
+    _id: string
     title: string;
     subDescription: string;
     longDescription: string;
