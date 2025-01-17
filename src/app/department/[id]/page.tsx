@@ -1,8 +1,41 @@
 
+import { fetchDepartmentDetails } from "@/lib/specializationApi";
+import axios from "axios";
+// import { Metadata } from "next";
 import Image from "next/image"
 
 
-const DepartmentDetailsPage = () => {
+interface DepartmentDetailsPageProps {
+    params: { id: string };
+}
+
+
+
+//   export async function generateMetadata({ params }: DepartmentDetailsPageProps): Promise<Metadata> {
+//     const data = await fetchDepartmentDetails(params.id);
+//     return {
+//       title: `${data.title || 'Department Details'} - Specialized Healthcare`,
+//       description: `${data.description || 'Details about the department'}`,
+//     };
+//   }
+
+// Fetch department details
+//   async function getDepartmentDetails(id: string) {
+//     return fetchDepartmentDetails(id);
+//   }
+
+
+
+
+
+const DepartmentDetailsPage = async ({ params }: DepartmentDetailsPageProps) => {
+
+    const { id } = params;
+    const data = await fetchDepartmentDetails(id);
+
+
+    const { title, subDescription, longDescription, mainImage } = data
+
 
     const services = [
         'General examination and personalized treatment plans',
@@ -38,10 +71,10 @@ const DepartmentDetailsPage = () => {
                     {/* Text and Button */}
                     <div className="relative z-20 text-primary px-5 md:px-8 py-5">
                         <h1 className="text-3xl md:text-5xl font-bold mb-5">
-                            Cardiology
+                            {title}
                         </h1>
                         <p className="text-lg md:text-xl md:w-2/3">
-                            Cardiology focuses on the diagnosis, treatment, and prevention of heart-related diseases and disorders.
+                            {subDescription.split('.')[0]}.
                         </p>
                         <button className='bg-primary rounded mt-6 text-white px-4 py-3 hover:bg-btnHover duration-500 text-lg'>Find A Doctor</button>
                     </div>
@@ -52,16 +85,14 @@ const DepartmentDetailsPage = () => {
             <div className="flex mt-10 px-5 md:mr-10 md:px-0">
                 <div className="md:w-1/12 hidden md:block mt-[215px] catagory ">
                     {/* <h6 className="text-4xl tracking-widest font-semibold uppercase -rotate-90">Cardiology</h6> */}
-                    <h6 className="text-4xl tracking-widest font-semibold uppercase -rotate-90">Cardiology</h6>
+                    <h6 className="text-4xl tracking-widest font-semibold uppercase -rotate-90 text-gray-600">Specialized</h6>
                 </div>
                 <div className="md:w-11/12 text-lg leading-relaxed tracking-wide">
-                    <p>Internal Medicine services provide care to patients 18 years and older with a focus on preventative care, chronic illness diagnoses and management, care coordination and referrals, and support to lead healthy lifestyles.
-                        Our approach is to encourage trust and open communication to provide comprehensive care appropriate to each patient needs and concerns.
-                        <br /> <br />
-                        Whether it is diabetes, high blood pressure, or heart health, our highly skilled providers and friendly care team have the expertise to guide you towards optimal well-being.
-                        Join us at the Charles B. Wang Community Health Center to start your journey to better care today at one of our internal medicine locations in Flushing, Queens or Lower Manhattan.
-                        <br /> <br />
-                        Whether it is diabetes, high blood pressure, or heart health, our highly skilled providers and friendly care team have the expertise to guide you towards optimal well-being. Join us at the Charles B. Wang Community Health Center to start your journey to better care today at one of our internal medicine locations in Flushing, Queens or Lower Manhattan.</p>
+                    <p>
+                        {longDescription.split('.').slice(0, 4).join('.')}. <br /> <br />
+                        {longDescription.split('.').slice(4, 7).join('.')}. <br /> <br />
+                        {longDescription.split('.').slice(7).join('.')}.
+                    </p>
                 </div>
             </div>
 
@@ -75,11 +106,10 @@ const DepartmentDetailsPage = () => {
 
                 <div className="mt-10 grid grid-cols-1 md:grid-cols-2  gap-8">
                     <div className="flex items-center">
-                        <Image className="w-full h-auto" src="https://img.freepik.com/premium-photo/male-medicine-doctor-holding-red-heart-putting-stethoscope-head-close-it-closeup-medical-help-cardiology-care-health-prophylaxis-prevention-insurance-surgery-resuscitation-concept_151013-14369.jpg?w=900" height={500} width={500} alt=""></Image>
+                        <Image className="w-full h-auto" src={mainImage} height={500} width={500} alt=""></Image>
                     </div>
                     <p className="text-lg leading-relaxed">
-                        Internal Medicine services provide care to patients 18 years and older with a focus on preventative care, chronic illness diagnoses and management, care coordination and referrals, and support to lead healthy lifestyles. Our approach is to encourage trust and open communication to provide comprehensive care appropriate to each patient needs and concerns.
-                        Whether it is diabetes, high blood pressure, or heart health, our highly skilled providers and friendly care team have the expertise to guide you towards optimal well-being. Join us at the Charles B. Wang Community Health Center to start your journey to better care today at one of our internal medicine locations in Flushing, Queens or Lower Manhattan.
+                        {subDescription}
                     </p>
                 </div>
 

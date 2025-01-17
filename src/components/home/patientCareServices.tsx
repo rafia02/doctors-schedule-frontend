@@ -1,11 +1,22 @@
-
+"use client"
+import { fetchPatientServices } from "@/lib/adminApi/ServicesApi";
 import PatientServiceCard from "../cards/patientServiceCard"
+import { Services } from "@/Types/adminDashboardType";
+import { useQuery } from "@tanstack/react-query";
+import LoadingSpinner from "../shared/loadingSpinner";
 
 
 const PatientCareServices = () => {
 
-    const datas = [1, 2, 3, 4, ]
+    const { data, isLoading, error } = useQuery<Services[]>({
+        queryKey: ['patientServices'],
+        queryFn: fetchPatientServices,
+    });
 
+    if (isLoading) return <LoadingSpinner></LoadingSpinner>;
+    if (error) return <p className="text-center text-red-500">Error Something. Please try again.</p>;
+
+console.log(data)
 
     return (
         <div className="mt-28  px-5 md:px-8">
@@ -23,14 +34,14 @@ const PatientCareServices = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 mt-8 md:mt-10 gap-9">
                 {
-                    datas.map((d, i)=> <PatientServiceCard key={i}></PatientServiceCard>)
+                    data?.map((d, i) => <PatientServiceCard key={i} service={d}></PatientServiceCard>)
                 }
             </div>
 
 
 
 
-                {/* <div className=" relative ">
+            {/* <div className=" relative ">
                     <Image className="w-full h-auto" height={200} width={200} src='https://img.freepik.com/free-photo/woman-patient-dentist_1303-9355.jpg?ga=GA1.1.490881575.1726385807&semt=ais_hybrid' alt=""></Image>
                     <div className="absolute inset-0 flex items-end justify-center">
                         <div className="backdrop-blur-md bg-secondery/20 hover:py-10 duration-500 w-full flex items-center px-4 py-5 justify-between text-textLight ">

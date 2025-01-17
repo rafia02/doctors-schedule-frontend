@@ -23,7 +23,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   // const email: any = user?.email
   const email: string | undefined = user?.email
 
-  const { data: role} = useGetRoleQuery(email, {
+  const { data: role } = useGetRoleQuery(email, {
     skip: !email,
   })
 
@@ -60,13 +60,17 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       >
         <div className="">
 
-          {
-             role?.result === "doctor" && <DoctorDashboardSidebar></DoctorDashboardSidebar>
-          }
 
           {
             role?.result === "admin" && <AdminDashboardSidebar></AdminDashboardSidebar>
           }
+
+
+          {
+            role?.result === "doctor" && <DoctorDashboardSidebar></DoctorDashboardSidebar>
+          }
+
+
 
           {
             role?.result === "patient" && <PatientDashboardSidebar></PatientDashboardSidebar>
