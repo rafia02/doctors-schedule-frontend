@@ -3,20 +3,21 @@
 import { useForm, useFieldArray, SubmitHandler } from "react-hook-form";
 import { PlusCircleIcon, TrashIcon } from "@heroicons/react/24/outline";
 import toast from "react-hot-toast";
+import { FormDataType } from "@/Types/adminDashboardType";
 
-interface Service {
-  service: string;
-}
+// interface Service {
+//   service: string;
+// }
 
-interface FormData {
-  title: string;
-  subDescription: string;
-  longDescription: string;
-  mainImage: FileList | null;
-  iconImage: FileList | null;
-  benifit: string;
-  services: Service[];
-}
+// interface FormData {
+//   title: string;
+//   subDescription: string;
+//   longDescription: string;
+//   mainImage: FileList | null;
+//   iconImage: FileList | null;
+//   benifit: string;
+//   services: Service[];
+// }
 
 const AddSpecializedForm = () => {
   const {
@@ -25,7 +26,7 @@ const AddSpecializedForm = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<FormData>({
+  } = useForm<FormDataType>({
     defaultValues: {
       title: "",
       subDescription: "",
@@ -68,7 +69,7 @@ const AddSpecializedForm = () => {
     }
   };
 
-  const onSubmit: SubmitHandler<FormData> = async (data) => {
+  const onSubmit: SubmitHandler<FormDataType> = async (data) => {
     try {
       const mainImageFile = data.mainImage?.[0];
       const iconImageFile = data.iconImage?.[0];

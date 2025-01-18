@@ -3,7 +3,7 @@ import React from 'react'
 import { TrashIcon } from "@heroicons/react/16/solid";
 import Image from 'next/image';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { Department } from '@/Types/specalizationType';
+import { Department } from '@/Types/adminDashboardType';
 import { fetchSpecializations, deleteSpecialization } from '@/lib/specializationApi';
 import LoadingSpinner from '@/components/shared/loadingSpinner';
 

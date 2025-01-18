@@ -19,7 +19,7 @@ const Navber = () => {
   const [showDropdown, setShowDropdown] = useState(false)
 
   const { user } = useSelector((state: RootState) => state.auth) as AuthState
-  console.log('user:', user)
+  // console.log('user:', user)
   useEffect(() => {
     monitorAuthState()
   }, [])
@@ -30,7 +30,7 @@ const Navber = () => {
   });
 
 
-  console.log(role)
+  // console.log(role)
 
   const handleLogout = () => {
     console.log('logout')
