@@ -235,3 +235,4 @@ const AddPatientService = () => {
 }
 
 export default AddPatientService
+
