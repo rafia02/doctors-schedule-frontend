@@ -4,8 +4,8 @@ import { TrashIcon } from "@heroicons/react/16/solid";
 import Image from 'next/image';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Department } from '@/Types/adminDashboardType';
-import { fetchSpecializations, deleteSpecialization } from '@/lib/specializationApi';
 import LoadingSpinner from '@/components/shared/loadingSpinner';
+import { deleteSpecialization, fetchSpecializations } from '@/lib/adminApi/specializationApi';
 
 const AllSpecialized = () => {
 
