@@ -75,9 +75,6 @@ const AllSpecialized = () => {
 
 
 
-
-
-
                     </tr>
                   ))}
                 </tbody>
