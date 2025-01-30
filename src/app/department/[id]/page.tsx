@@ -1,5 +1,5 @@
 
-import { fetchDepartmentDetails } from "@/lib/specializationApi";
+import { fetchDepartmentDetails } from "@/lib/adminApi/specializationApi";
 import axios from "axios";
 // import { Metadata } from "next";
 import Image from "next/image"
